@@ -1,5 +1,6 @@
 @font-face { font-family: Montserrat; src: url('../font/Montserrat-Black.ttf');}
-@font-face { font-family: Montserrat; font-weight: bold; src: url('../font/Montserrat-Bold.ttf');}
+@font-face { font-family: Montserrat; font-weight: bold; src: url('../font/Montserrat-Black.ttf');}
+@font-face { font-family: Montserrat; font-weight: lighter; src: url('../font/Montserrat-Light.ttf');}
 
 :root {
     --primary-color: #0D1B2A;
@@ -102,6 +103,23 @@ nav.navbar ul li a:focus {
     height: 5px;
     background-color: #FFF;
     margin: 6px 0;
+}
+
+.footer-separation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background-color: var(--primary-color);
+    color: #FFF;
+
+    font-weight: lighter;
+}
+
+.footer-separation .description {
+    max-width: 65%;
 }
 
 @media screen and (min-width: 1025px) {
