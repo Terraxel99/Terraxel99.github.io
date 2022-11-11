@@ -1,0 +1,134 @@
+@font-face { font-family: Montserrat; src: url('../font/Montserrat-Black.ttf');}
+@font-face { font-family: Montserrat; font-weight: bold; src: url('../font/Montserrat-Bold.ttf');}
+
+:root {
+    --primary-color: #0D1B2A;
+    --secondary-color: #1B263B;
+    --accent-color: #415A77;
+    --subaccent-color: #778DA9;
+    --light-color: #E0E1DD;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header.header {
+    background-color: var(--primary-color);
+    color: #FFF;
+    padding: 0 1%;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+}
+
+#navbar-toggle:checked ~ nav.navbar {
+    left: 0;
+}
+
+header label#openBtn {
+    position: absolute;
+    left: 50px;
+    top: 14px;
+
+    cursor: pointer;
+    
+    z-index: 1;
+}
+
+nav.navbar {
+    height: 100%;
+    width: 90%;
+    padding-top: 90px;
+    margin-left: 0;
+    padding-top: 70px;
+
+    position: absolute;
+    top: 0;
+    left: -90%;
+
+    background-color: var(--primary-color);
+
+    transition: all .3s ease-in;
+}
+
+nav.navbar ul {
+    list-style-type: none;
+
+    height: 70px;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+nav.navbar ul li {
+    width: 100%;
+}
+
+nav.navbar ul li a {
+    padding: 10px 50px;
+    margin-right: 0;
+
+    color: #FFF;
+    text-decoration: none;
+    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    width: 100%;
+    display: block;
+}
+
+nav.navbar ul li a:hover, 
+nav.navbar ul li a:active,
+nav.navbar ul li a:focus {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+}
+
+.burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: #FFF;
+    margin: 6px 0;
+}
+
+@media screen and (min-width: 1025px) {
+    header label#openBtn {
+        display: none;
+    }
+
+    nav.navbar {
+        padding: 0;
+        height: 70px;
+        margin-left: 20px;
+
+        display: inline-block;
+        position: static;
+    }
+
+    nav.navbar ul {
+        flex-direction: row;
+    }
+
+    nav.navbar ul li {
+        width: unset;
+    }
+
+    nav.navbar ul li a {
+        margin-right: 50px;
+        border-radius: 5px;
+        text-align: center;
+    }
+}
