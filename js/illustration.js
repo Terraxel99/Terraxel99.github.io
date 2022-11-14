@@ -35,6 +35,7 @@ class Point {
   var edges = [];
   var triangulationEdges = [];
   var isPolygonCreated = false;
+  var occurenceOfEachColor = [0,0,0,0]
   
   function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
@@ -212,9 +213,20 @@ class Point {
       } else {
         points[i + 1].color = 6 - points[i - 1].color - points[i].color;
       }
+      occurenceOfEachColor[points[i+1].color]++;
     }
   }
   
+  function findGuardsPosition(){
+    let min = Infinity;
+    let colorGuard = 0;
+    for(let i = 1; i<occurenceOfEachColor.length; i++){
+        if(occurenceOfEachColor[i]<min)
+            colorGuard = i;
+    }
+    return colorGuard;
+  }
+
   /*function colorEar(ear) {
     pointsToColor = [];
     var colorUsed = [0, 0, 0, 0];
@@ -264,6 +276,7 @@ class Point {
       //colorEar(ear);
       console.log(points);
       triColorGraph();
+      console.log(findGuardsPosition());
     }
   }
   
