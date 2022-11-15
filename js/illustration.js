@@ -35,7 +35,8 @@ class Point {
   var edges = [];
   var triangulationEdges = [];
   var isPolygonCreated = false;
-  var occurenceOfEachColor = [0,0,0,0]
+  var occurenceOfEachColor = [0, 0, 0, 0];
+  const colors = ["black", "red", "green", "blue"];
   
   function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
@@ -51,7 +52,7 @@ class Point {
     button2.position(68, 200);
     button2.mouseReleased(createPolygon);
   
-    button3 = createButton("apply triangulation");
+    button3 = createButton("Apply Chvátal's watchman theorem");
     button3.position(180, 200);
     button3.mouseReleased(applyTriangulation);
   }
@@ -213,20 +214,21 @@ class Point {
       } else {
         points[i + 1].color = 6 - points[i - 1].color - points[i].color;
       }
-      occurenceOfEachColor[points[i+1].color]++;
+      occurenceOfEachColor[points[i + 1].color]++;
     }
   }
   
-  function findGuardsPosition(){
+  function findGuardsPosition() {
     let min = Infinity;
     let colorGuard = 0;
-    for(let i = 1; i<occurenceOfEachColor.length; i++){
-        if(occurenceOfEachColor[i]<min)
-            colorGuard = i;
+    for (let i = 1; i < occurenceOfEachColor.length; i++) {
+      if (occurenceOfEachColor[i] < min) colorGuard = i;
     }
+    document.getElementById("result").innerHTML =
+      "The color of the guards is " + colors[colorGuard] + ".";
     return colorGuard;
   }
-
+  
   /*function colorEar(ear) {
     pointsToColor = [];
     var colorUsed = [0, 0, 0, 0];
@@ -285,22 +287,24 @@ class Point {
     background(200);
   
     //This part draws the points and lines of the polygon
+    let c;
     for (let i = 0; i < points.length; i++) {
-      stroke("black");
       switch (points[i].color) {
         case 1:
-          stroke("red");
+          c = color("red");
           break;
         case 2:
-          stroke("green");
+          c = color("green");
           break;
         case 3:
-          stroke("blue");
+          c = color("blue");
           break;
         default:
-          stroke("black");
+          c = color("black");
           break;
       }
+      fill(c);
+      noStroke();
       textSize(14);
       text(points[i].number, points[i].x + 5, points[i].y + 5);
       ellipse(points[i].x, points[i].y, 7, 7);
