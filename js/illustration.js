@@ -289,7 +289,6 @@ class Point {
     //This part draws the points and lines of the polygon
     let c;
     for (let i = 0; i < points.length; i++) {
-<<<<<<< HEAD
       switch (points[i].color) {
         case 1:
           c = color("red");
@@ -302,26 +301,6 @@ class Point {
           break;
         default:
           c = color("black");
-=======
-      stroke("black");
-      fill("black");
-      switch (points[i].color) {
-        case 1:
-          stroke("red");
-          fill("red");
-          break;
-        case 2:
-          stroke("green");
-          fill("green");
-          break;
-        case 3:
-          stroke("blue");
-          fill("blue");
-          break;
-        default:
-          stroke("black");
-          fill("black");
->>>>>>> a00e95eb8e6ae5434e8f397d3637703592099f99
           break;
       }
       fill(c);
