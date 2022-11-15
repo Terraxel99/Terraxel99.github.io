@@ -37,23 +37,31 @@ class Point {
   var isPolygonCreated = false;
   var occurenceOfEachColor = [0, 0, 0, 0];
   const colors = ["black", "red", "green", "blue"];
-  
+
   function setup() {
-    let canvas = createCanvas(windowWidth, windowHeight);
+    const canvasContainer = document.getElementById("illustration1-canvas");
+    let canvas = createCanvas(canvasContainer.offsetWidth, 450);
+    canvas.parent("illustration1-canvas");
     canvas.mousePressed(addPoint);
-    // Put setup code here
+
     fill("black");
     textSize(40);
     button = createButton("Clear");
-    button.position(10, 200);
+    button.position(10, 10);
+    button.style("z-index", "3");
+    button.parent("illustration1-canvas");
     button.mouseReleased(resetpoints);
   
     button2 = createButton("Create polygon");
-    button2.position(68, 200);
+    button2.position(70, 10);
+    button2.style("z-index", "3");
+    button2.parent("illustration1-canvas");
     button2.mouseReleased(createPolygon);
   
     button3 = createButton("Apply Chvátal's watchman theorem");
-    button3.position(180, 200);
+    button3.position(195, 10);
+    button3.style("z-index", "3");
+    button3.parent("illustration1-canvas");
     button3.mouseReleased(applyTriangulation);
   }
   
@@ -62,7 +70,7 @@ class Point {
     if (isPolygonCreated) {
       reccursiveTriangulation(points, triangulationEdges);
     } else {
-      document.getElementById("result").innerHTML =
+      document.getElementById("illustation1-result").innerHTML =
         "The polygon is not created yet";
     }
   }
@@ -73,7 +81,7 @@ class Point {
     edges = [];
     triangulationEdges = [];
     isPolygonCreated = false;
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("illustation1-result").innerHTML = "";
   }
   
   function createPolygon() {
@@ -231,7 +239,8 @@ class Point {
     for (let i = 1; i < occurenceOfEachColor.length; i++) {
       if (occurenceOfEachColor[i] < min) colorGuard = i;
     }
-    document.getElementById("result").innerHTML =
+
+    document.getElementById("illustation1-result").innerHTML =
       "The color of the guards is " + colors[colorGuard] + ".";
     return colorGuard;
   }
@@ -254,6 +263,7 @@ class Point {
     } else {
       let ear = new Ear(ptsList[0], ptsList[1], ptsList[2]);
       triColorGraph();
+      findGuardsPosition();
     }
   }
   
@@ -305,6 +315,28 @@ class Point {
   
   // This Redraws the Canvas when resized
   windowResized = function () {
-    resizeCanvas(windowWidth, windowHeight);
+    resize();
   };
+
+  /** Toggles the modal of the illustration */
+  function toggleModal() {
+    const modal = document.getElementById("illustration1-modal");
+
+    if (modal.style.display === "none" || modal.style.display === "") {
+      modal.style.display = "block";
+      resize();
+    } else {
+      modal.style.display = "none";
+    }
+  }
+
+  function resize() {
+    const canvasContainer = document.getElementById("illustration1-canvas");
+    resizeCanvas(canvasContainer.offsetWidth, 450);
+  }
+
+  const toggles = document.querySelectorAll(".illustration1-toggle");
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", toggleModal);
+  });
   

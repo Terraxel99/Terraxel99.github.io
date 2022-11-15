@@ -34,14 +34,42 @@
     
         <main class="main-content">
             <h1>The Art Gallery Problem</h1>
-            
-            Report comes here...
 
-            Example of LaTeX input for later => To remove please
-            \[\mathcal{O}(2|E| + |E| + |V| + 2|E|) \approx \mathcal{O}(5|E| + |V|) \approx \mathcal{O}(|E| + |V|) .\]
-    
-            <div id="canvas-container"></div>
+            <div>
+                <section class="report">
+
+                </section>
+
+                <aside class="illustrations-toggle">
+                    <button class="illustration1-toggle">Toggle illustration 1</button>
+                </aside>
+            </div>
+
         </main>
+
+        <input type="checkbox" name="illustration1-toggle" id="illustration1-toggle" style="display: none;">
+
+        <div class="modal" id="illustration1-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Illustration 1</h3>
+    
+                    <p>
+                        You can draw your polygon below in a counterclockwise way, once it is
+                        finished click on the "create polygon" button to close it. Then press the
+                        "apply Chvátal's watchman theorem" button to see the positions and the color of the guards.
+                        <hr/>
+
+                        Result : <span id="illustation1-result"></span>
+                    </p>
+                </div>
+
+                <div id="illustration1-canvas" style="position: relative;"></div>
+                
+                <a class="illustration1-toggle modal-toggle-link"><span class="modal-close"></span></a>
+            </div>
+
+        </div>
     
         <footer class="footer">
             <div class="footer-separation">
