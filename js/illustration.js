@@ -205,6 +205,9 @@ class Point {
     return [ear, i];
   }
   
+  /**
+   * This method tricolors the graph in O(n) time.
+   */
   function triColorGraph() {
     points[0].color = 1;
     points[1].color = 2;
@@ -218,6 +221,10 @@ class Point {
     }
   }
   
+  /**
+   * This method returns the number of the color of the guards and display in the html the result.
+   * @returns the number of the color of the guards.
+   */
   function findGuardsPosition() {
     let min = Infinity;
     let colorGuard = 0;
@@ -228,35 +235,6 @@ class Point {
       "The color of the guards is " + colors[colorGuard] + ".";
     return colorGuard;
   }
-  
-  /*function colorEar(ear) {
-    pointsToColor = [];
-    var colorUsed = [0, 0, 0, 0];
-    if (ear.nghbr1.color === 0) {
-      pointsToColor.push(ear.nghbr1);
-    } else {
-      colorUsed[ear.nghbr1.color]++;
-    }
-    if (ear.nghbr2.color === 0) {
-      pointsToColor.push(ear.nghbr2);
-    } else {
-      colorUsed[ear.nghbr2.color]++;
-    }
-    if (ear.pt.color === 0) {
-      pointsToColor.push(ear.pt);
-    } else {
-      colorUsed[ear.pt.color]++;
-    }
-    pointsToColor.forEach((element) => {
-      for (let i = 1; i < colorUsed.length; i++) {
-        if (colorUsed[i] === 0) {
-          element.color = i;
-          colorUsed[i]++;
-          break;
-        }
-      }
-    });
-  }*/
   
   /* This method apply the triangulation on the polygon reccursively.
   The method searches after an ear of the polygon and when it finds one,
@@ -275,10 +253,7 @@ class Point {
       reccursiveTriangulation(newptsList, egsList);
     } else {
       let ear = new Ear(ptsList[0], ptsList[1], ptsList[2]);
-      //colorEar(ear);
-      console.log(points);
       triColorGraph();
-      console.log(findGuardsPosition());
     }
   }
   
@@ -316,7 +291,7 @@ class Point {
     }
   
     // This part draws the lines create for the triangulation.
-    stroke("red");
+    stroke("grey");
     for (let i = 0; i < triangulationEdges.length; i++) {
       line(
         triangulationEdges[i].pt1.x,
