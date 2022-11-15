@@ -32,12 +32,13 @@
             </nav>
         </header>
     
-        <main class="main-content">
+        <main>
             <h1>The Art Gallery Problem</h1>
 
-            <div>
+            <div class="main-content">
                 <section class="report">
-
+                    <p>For now, the report is a simple iframe containing the PDF. This will be the case for the pre-version of the project. For the final version, everything will be written in HTML format.</p>
+                    <iframe src="report/report.pdf" frameborder="0" style="width: 100%; min-height: 600px;"></iframe>
                 </section>
 
                 <aside class="illustrations-toggle">
@@ -46,8 +47,6 @@
             </div>
 
         </main>
-
-        <input type="checkbox" name="illustration1-toggle" id="illustration1-toggle" style="display: none;">
 
         <div class="modal" id="illustration1-modal">
             <div class="modal-content">
@@ -60,7 +59,7 @@
                         "apply Chvátal's watchman theorem" button to see the positions and the color of the guards.
                         <hr/>
 
-                        Result : <span id="illustation1-result"></span>
+                        <p class="result-title">Result : </p><span id="illustation1-result"></span>
                     </p>
                 </div>
 

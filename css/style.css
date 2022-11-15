@@ -99,6 +99,19 @@ nav.navbar ul li a:focus {
     color: var(--primary-color);
 }
 
+main {
+    padding: 0 1rem;
+}
+
+main div.main-content {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+main div.main-content aside.illustrations-toggle {
+    display: flex;
+}
+
 .burger-icon span {
     display: block;
     width: 35px;
@@ -122,6 +135,12 @@ div#illustration1-canvas {
     display: none;
 }
 
+p.result-title {
+    display: inline-block;
+    margin: 0 1rem 0 0;
+    font-weight: bold;
+}
+
 .modal-content {
     position: relative;
     top: 50%;
@@ -131,6 +150,28 @@ div#illustration1-canvas {
     padding: 20px;
     border-radius: 5px;
     width: 95%;
+}
+
+button.illustration1-toggle {
+    background-color: var(--secondary-color);
+    color: #FFF;
+
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+ 
+    transition: background-color .2s ease-in-out;
+}
+
+button.illustration1-toggle:hover {
+    cursor: pointer;
+}
+
+button.illustration1-toggle:hover,
+button.illustration1-toggle:active,
+button.illustration1-toggle:focus {
+    outline: none !important;
+    background-color: var(--accent-color);
 }
 
 a.modal-toggle-link {
@@ -193,5 +234,22 @@ span.modal-close::after {
         margin-right: 50px;
         border-radius: 5px;
         text-align: center;
+    }
+
+    main div.main-content {
+        flex-direction: row;
+    }
+
+    section.report {
+        width: 80%;
+    }
+
+    aside.illustrations-toggle {
+        flex-direction: column;
+        
+        width: 20%;
+        
+        padding-left: 2rem;
+        margin-top: 2rem;
     }
 }
