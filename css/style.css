@@ -120,6 +120,7 @@ main div.main-content.contributors {
     padding: 1rem;
     border: 1px solid var(--subaccent-color);
     border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
 .contributor .img-container {
@@ -273,6 +274,10 @@ span.modal-close::after {
 
     main div.main-content {
         flex-direction: row;
+    }
+
+    .contributor {
+        margin-bottom: 0;
     }
 
     section.report {
