@@ -94,6 +94,7 @@ nav.navbar ul li a {
 
 nav.navbar ul li a:hover, 
 nav.navbar ul li a:active,
+nav.navbar ul li a.active,
 nav.navbar ul li a:focus {
     background-color: var(--light-color);
     color: var(--primary-color);
@@ -106,6 +107,39 @@ main {
 main div.main-content {
     display: flex;
     flex-direction: column-reverse;
+    margin-bottom: 1rem;
+}
+
+main div.main-content.contributors {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.contributor {
+    padding: 1rem;
+    border: 1px solid var(--subaccent-color);
+    border-radius: 5px;
+}
+
+.contributor .img-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 250px;
+}
+
+.contributor .img-container > img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    border-radius: 5px;
+}
+
+.contributor .contributor-details {
+    margin-top: 1rem;
+    border-top: 1px solid var(--subaccent-color)
 }
 
 main div.main-content aside.illustrations-toggle {
@@ -228,6 +262,7 @@ span.modal-close::after {
 
     nav.navbar ul li {
         width: unset;
+        margin-right: 1rem;
     }
 
     nav.navbar ul li a {
