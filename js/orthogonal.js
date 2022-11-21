@@ -6,7 +6,7 @@ class Point {
         this.x = x;
         this.y = y;
         this.number = nb;
-        this.color = color; // 0 = black, 1 = red, 2 = green, 3 = blue
+        this.color = color; // 0 = black, 1 = red, 2 = green, 3 = blue, 4 = yellow
         this.adjList = adjList;
     }
 }
@@ -36,7 +36,7 @@ var pointsForComputation = [];
 var edges = [];
 var quadrilateralizationEdges = [];
 var isPolygonCreated = false;
-var occurenceOfEachColor = [0, 0, 0, 0, 0];
+var occurenceOfEachColor = [0, 0, 0, 0, 0, 0];
 const colors = ["black", "red", "green", "blue", "yellow", "grey"];
 
 function setup() {
@@ -225,13 +225,19 @@ function get3Following(i, pts) {
 /* This function returns an ear of the polygon. */
 function findEar(ptsList) {
     let ear;
+    let tmpEar;
     let i = 0;
     let earNotFound = true;
     while (earNotFound) {
-        if (isConvex(i + 1, ptsList) && isConvex(i + 2, ptsList)) {
+        tmpEar = get3Following(i, ptsList);
+        console.log(tmpEar);
+        if (computeDeterminant(tmpEar.pt4, tmpEar.pt1, tmpEar.pt2) < 0 &&
+            computeDeterminant(tmpEar.pt1, tmpEar.pt2, tmpEar.pt3) < 0 &&
+            computeDeterminant(tmpEar.pt2, tmpEar.pt3, tmpEar.pt4) < 0 &&
+            computeDeterminant(tmpEar.pt3, tmpEar.pt4, tmpEar.pt1) < 0) {
             if (noConcaveInside(i, ptsList)) {
                 earNotFound = false;
-                ear = get3Following(i, ptsList);
+                ear = tmpEar;
                 //colorEar(ear);
             }
         }
@@ -256,6 +262,7 @@ function triColorGraph() {
         }
         occurenceOfEachColor[points[i + 1].color]++;
     }
+
 }
 
 /**
@@ -284,7 +291,9 @@ function reccursiveQuadrilateralization(ptsList, egsList) {
         let result = findEar(ptsList);
         let ear = result[0];
         let newptsList = [...ptsList];
-        newptsList.splice(result[1] + 1, 2);
+        newptsList = newptsList.filter(function( pt ) {
+            return pt.number !== ear.pt2.number && pt.number !== ear.pt3.number;
+        });
         //closing the square
         points[ear.pt1.number].adjList.push(points[ear.pt4.number]);
         points[ear.pt4.number].adjList.push(points[ear.pt1.number]);
@@ -305,8 +314,8 @@ function reccursiveQuadrilateralization(ptsList, egsList) {
         points[ptsList[3].number].adjList.push(points[ptsList[1].number]);
         egsList.push(new Edge(ptsList[0], ptsList[2], 5));
         egsList.push(new Edge(ptsList[1], ptsList[3], 5));
-        triColorGraph();
-        findGuardsPosition();
+        //triColorGraph();
+        //findGuardsPosition();
     }
 }
 
@@ -342,6 +351,7 @@ function draw() {
             quadrilateralizationEdges[i].pt2.y
         );
     }
+    fill("black");
     stroke("black");
 }
 
