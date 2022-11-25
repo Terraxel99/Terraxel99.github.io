@@ -251,17 +251,32 @@ function findEar(ptsList) {
 /**
  * This method tricolors the graph in O(n) time.
  */
-function triColorGraph() {
-    points[0].color = 1;
-    points[1].color = 2;
-    for (let i = 1; i < points.length - 1; i++) {
-        if (points[i].adjList.length % 2 !== 0) {
-            points[i + 1].color = points[i - 1].color;
-        } else {
-            points[i + 1].color = 6 - points[i - 1].color - points[i].color;
+function quadColorGraph() {
+    //points[0].color = 1;
+    //points[1].color = 2;
+    let correctlyColored = true;
+
+    do{
+        for (let i = 0; i < points.length; i++) {
+            console.log(point[i]);
+            points[i].color = Math.floor(Math.random() * 4) + 1;
         }
-        occurenceOfEachColor[points[i + 1].color]++;
-    }
+
+        correctlyColored = true;
+
+        for (let i = 0; i < points.length; i++) {
+            for(let j = 0 ; j < points[i].adjList.length; j++){
+                if(points[i].color === points[i].adjList[j].color){
+                    correctlyColored = false;
+                    break;
+                }
+            }
+            if(!correctlyColored){
+                break;
+            }
+        }
+
+    }while(!correctlyColored);
 
 }
 
@@ -314,7 +329,7 @@ function reccursiveQuadrilateralization(ptsList, egsList) {
         points[ptsList[3].number].adjList.push(points[ptsList[1].number]);
         egsList.push(new Edge(ptsList[0], ptsList[2], 5));
         egsList.push(new Edge(ptsList[1], ptsList[3], 5));
-        //triColorGraph();
+        quadColorGraph();
         //findGuardsPosition();
     }
 }
