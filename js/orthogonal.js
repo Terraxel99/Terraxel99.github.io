@@ -252,27 +252,32 @@ function findEar(ptsList) {
  * This method tricolors the graph in O(n) time.
  */
 function quadColorGraph() {
-    //points[0].color = 1;
-    //points[1].color = 2;
     let correctlyColored = true;
 
     do{
+        correctlyColored = true;
         for (let i = 0; i < points.length; i++) {
-            console.log(point[i]);
+
             points[i].color = Math.floor(Math.random() * 4) + 1;
+            if( i != 0 && points[i].color === points[i-1].color){
+                correctlyColored = false;
+                break;
+            }
         }
 
-        correctlyColored = true;
+        if(correctlyColored){
+            correctlyColored = true;
 
-        for (let i = 0; i < points.length; i++) {
-            for(let j = 0 ; j < points[i].adjList.length; j++){
-                if(points[i].color === points[i].adjList[j].color){
-                    correctlyColored = false;
+            for (let i = 0; i < points.length; i++) {
+                for(let j = 0 ; j < points[i].adjList.length; j++){
+                    if(points[i].color === points[i].adjList[j].color){
+                        correctlyColored = false;
+                        break;
+                    }
+                }
+                if(!correctlyColored){
                     break;
                 }
-            }
-            if(!correctlyColored){
-                break;
             }
         }
 
