@@ -43,7 +43,12 @@ let illustration2Sketch = function (p) {
     /* This method applies the triangulation on the drawn polygon */
     p.applyQuadrilateralization = function () {
         if (isPolygonCreated) {
-            p.recursiveQuadrilateralization(points, quadrilateralizationEdges);
+            let success= true;
+            success = p.recursiveQuadrilateralization(points, quadrilateralizationEdges);
+            if (!success) {
+                document.getElementById("illustration2-result").innerHTML =
+                "Failed to quadrilateralize the polygon.";
+            }
         } else {
             document.getElementById("illustration2-result").innerHTML =
                 "The polygon is not created yet";
@@ -198,7 +203,6 @@ let illustration2Sketch = function (p) {
         let earNotFound = true;
         while (earNotFound) {
             tmpEar = p.get3Following(i, ptsList);
-            console.log(tmpEar);
             if (p.computeDeterminant(tmpEar.pt4, tmpEar.pt1, tmpEar.pt2) < 0 &&
                 p.computeDeterminant(tmpEar.pt1, tmpEar.pt2, tmpEar.pt3) < 0 &&
                 p.computeDeterminant(tmpEar.pt2, tmpEar.pt3, tmpEar.pt4) < 0 &&
@@ -216,7 +220,7 @@ let illustration2Sketch = function (p) {
     };
 
     /**
-     * This method tricolors the graph in O(n) time.
+     * This method tricolors the graph in O(exp) time.
      */
     p.quadColorGraph = function () {
         let correctlyColored = true;
@@ -278,6 +282,7 @@ let illustration2Sketch = function (p) {
      It ends when the polygon has only 3 vertices left 
      (and therefore this one is itself a square). */
     p.recursiveQuadrilateralization = function (ptsList, egsList) {
+        let toReturn = false;
         if (ptsList.length > 4) {
             let result = p.findEar(ptsList);
             let ear = result[0];
@@ -297,16 +302,23 @@ let illustration2Sketch = function (p) {
             egsList.push(new Edge(ear.pt1, ear.pt4, 6));
             egsList.push(new Edge(ear.pt1, ear.pt3, 5));
             egsList.push(new Edge(ear.pt2, ear.pt4, 5));
-            p.recursiveQuadrilateralization(newptsList, egsList);
-        } else if (ptsList.length === 4) {
+            toReturn = p.recursiveQuadrilateralization(newptsList, egsList);
+        }
+        if (ptsList.length === 4 &&
+            p.computeDeterminant(ptsList[3], ptsList[0], ptsList[1]) < 0 &&
+            p.computeDeterminant(ptsList[0], ptsList[1], ptsList[2]) < 0 &&
+            p.computeDeterminant(ptsList[1], ptsList[2], ptsList[3]) < 0 &&
+            p.computeDeterminant(ptsList[2], ptsList[3], ptsList[0]) < 0) {
+
             points[ptsList[0].number].adjList.push(points[ptsList[2].number]);
             points[ptsList[2].number].adjList.push(points[ptsList[0].number]);
             points[ptsList[1].number].adjList.push(points[ptsList[3].number]);
             points[ptsList[3].number].adjList.push(points[ptsList[1].number]);
             egsList.push(new Edge(ptsList[0], ptsList[2], 5));
             egsList.push(new Edge(ptsList[1], ptsList[3], 5));
+            toReturn = true;
         }
-        // TODO : gérer si la quadrialisation ne marche pas
+        return toReturn;
     };
 
     p.draw = function () {
