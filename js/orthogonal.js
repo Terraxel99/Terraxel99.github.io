@@ -58,12 +58,22 @@ function resetpoints() {
 }
 
 function createPolygon() {
-    isPolygonCreated = true;
     //add the last edge connecting edge 0 with the last one to close the polygon.
 
-    points[0].adjList.push(points[points.length - 1]);
-    points[points.length - 1].adjList.push(points[0]);
-    edges.push(new Edge(points[0], points[points.length - 1], 0));
+    if (points.length > 3 && points.length % 2 === 0) {
+        isPolygonCreated = true;
+        if(points[0].x === points[1].x){
+            points[points.length - 1].y = points[0].y;
+        }else if(points[0].y === points[1].y){
+            points[points.length - 1].x = points[0].x;
+        }
+
+        points[0].adjList.push(points[points.length - 1]);
+        points[points.length - 1].adjList.push(points[0]);
+        edges.push(new Edge(points[0], points[points.length - 1], 0));
+    }else{
+        //if the polygon is cannot be closed, print msg
+    }
 }
 
 /* This function add a point to the list of points and call the function 
