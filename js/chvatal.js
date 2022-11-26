@@ -276,21 +276,3 @@ is convex (if it is left turn since we check in counter clock wise) */
     p.resizeCanvas(canvasContainer.offsetWidth, 450);
   };
 };
-
-/** Toggles the modal of the illustration */
-function toggleModal1() {
-  const modal = document.getElementById("illustration1-modal");
-
-  if (modal.style.display === "none" || modal.style.display === "") {
-    modal.style.display = "block";
-    illustration1.customResize();
-  } else {
-    modal.style.display = "none";
-  }
-}
-
-let illustration1 = new p5(illustration1Sketch, "illustration1-canvas");
-
-document.querySelectorAll(".illustration1-toggle")?.forEach((toggle) => {
-  toggle.addEventListener("click", toggleModal1);
-});

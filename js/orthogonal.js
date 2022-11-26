@@ -327,23 +327,3 @@ let illustration2Sketch = function (p) {
         p.resizeCanvas(canvasContainer.offsetWidth, 450);
     };
 };
-
-
-
-/** Toggles the modal of the illustration */
-function toggleModal2() {
-    const modal = document.getElementById("illustration2-modal");
-
-    if (modal.style.display === "none" || modal.style.display === "") {
-        modal.style.display = "block";
-        illustration2.customResize();
-    } else {
-        modal.style.display = "none";
-    }
-}
-
-let illustration2 = new p5(illustration2Sketch, "illustration2-canvas");
-
-document.querySelectorAll(".illustration2-toggle")?.forEach((toggle) => {
-    toggle.addEventListener("click", toggleModal2);
-});
