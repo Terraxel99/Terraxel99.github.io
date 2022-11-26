@@ -143,9 +143,15 @@ main div.main-content.contributors {
     border-top: 1px solid var(--subaccent-color);
 }
 
-main div.main-content aside.illustrations-toggle {
+main div.main-content aside.illustrations-toggle > div {
     display: flex;
     gap: 1rem;
+    justify-content: center;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    
+    border-bottom: 2px solid gray;
 }
 
 .burger-icon span {
@@ -281,16 +287,24 @@ span.modal-close::after {
         margin-bottom: 0;
     }
 
-    section.report {
+    article.report {
         width: 80%;
+        border-right: 2px solid gray;
+        margin-top: 1rem;
     }
 
-    aside.illustrations-toggle {
+    main div.main-content aside.illustrations-toggle > div {
         flex-direction: column;
-        
+        justify-content: start;
+
         width: 20%;
+
+        position: sticky; top: 10px;
         
         padding-left: 2rem;
+        padding-top: 0;
         margin-top: 2rem;
+
+        border-bottom: 0;
     }
 }

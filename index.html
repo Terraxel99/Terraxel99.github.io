@@ -29,23 +29,138 @@
                 <ul>
                     <li><a class="active" href="#">Report</a></li>
                     <li><a href="contributors.html">Contributors</a></li>
-                    <!--<li><a href="./illustrations.html">Illustration page</a></li>-->
                 </ul>
             </nav>
         </header>
     
-        <main>
-            <h1>The Art Gallery Problem</h1>
-
+        <main style="background-color: #F6F6F6;">
             <div class="main-content">
-                <section class="report">
-                    <p>For now, the report is a simple iframe containing the PDF. This will be the case for the pre-version of the project. For the final version, everything will be written in HTML format.</p>
-                    <iframe src="report/report.pdf" frameborder="0" style="width: 100%; min-height: 600px;"></iframe>
-                </section>
+                <article class="report">
+                    <h1 class="report__title text-center">The Art Gallery Problem</h1>
+                    
+                    <div class="report__metadata">
+                        <p class="report__authors text-center"><span class="underline">Authors :</span> Kaplan Oruç & Gailly Vincent & Dudziak Thomas (see <a href="./contributors.html" target="_blank" rel="noopener noreferrer">contributors page</a>).</p>
+                        <p class="report__date text-center"><span class="underline">Date :</span> November 2022.</p>
+                    </div>
+                    
+                    <div class="report__content">
+                        <div class="report__contents-table">
+                            <h2>Contents</h2>
+
+                            <div class="report__contents-table__listing">
+                                <ol>
+                                    <li><a href="#section__introduction">Introduction</a></li>
+                                    <li><a href="#section__art-gallery-problem"">The Art Gallery Problem</a>
+                                        <ol>
+                                            <li><a href="#subsection__art-gallery-definition">Defining the problem</a></li>
+                                            <li><a href="#subsection__art-gallery-applications">Real-life applications</a></li>
+                                        </ol>
+                                    </li>
+                                    <li><a href="#">Art Gallery is Existential-R complete</a>
+                                        <ol>
+                                            <li><a href="#">Existential Theory of Reals (ETR)</a></li>
+                                            <li><a href="#">Existential-R class</a></li>
+                                            <li><a href="#">Art Gallery is Existential-R complete</a></li>
+                                        </ol>
+                                    </li>
+                                    <li><a href="#">Well known results</a>
+                                        <ol>
+                                            <li><a href="#">Chvátal's watchman theorem and Steve Fisk's short proof</a></li>
+                                            <li><a href="#">The orthogonal art gallery problem</a></li>
+                                        </ol>
+                                    </li>
+                                    <li><a href="#">Using irrational coordinates for guards</a></li>
+                                    <li><a href="#">Illustrations & implementations</a></li>
+                                    <li><a href="#">Glossary</a></li>
+                                    <li><a href="#">Bibliography</a></li>
+                                </ol>
+                            </div>
+                        </div>
+    
+                        <div class="report__main-content">
+                            
+                            <section id="section__introduction" class="section">
+                                <h2>Introduction</h2>
+                                <p>In this report, we cover the Art Gallery Problem and how it has been ap-
+                                    plied/used in our project. From defining the problem and its complexity class(es)
+                                    belonging to implementing algorithms to illustrate the problem and its solutions,
+                                    this paper is a summary of all our researches as well as our experiments and
+                                    code.
+                                </p>
+                            </section>
+                            
+                            <section id="section__art-gallery-problem" class="section">
+                                <h2>The Art Gallery Problem</h2>
+
+                                <p>First, let us define what is the Art Gallery Problem, its real-life applications
+                                    and why is it a such interesting problem.</p>
+
+                                <section id="subsection__art-gallery-definition" class="subsection">
+                                    <h3>Defining the problem</h3>
+                                </section>
+
+                                <section id="subsection__art-gallery-applications" class="subsection">
+                                    <h3>Real-life applications</h3>
+                                    <p>This problem has many applications. Starting with the problem itself, that
+                                        is, to place guards or security cameras to cover a place, such as a museum, a
+                                        bank or a prison, etc. But where its use is most widespread, is in video games.
+                                        In particular in the programming of artificial intelligence, 3D rendering, lighting
+                                        effects. And from this comes its use in robotics, special effects and simulation
+                                        tools.</p>
+                                </section>
+
+                            </section>
+                            
+                            <section class="section section__art-gallery-er-complete">
+                                <h2>Art Gallery Problem is Existential-R complete</h2>
+
+                                <section id="subsection__etr" class="subsection">
+                                    <h3>Existential Theory of Reals (ETR)</h3>
+
+                                    <p>In this section, we will cover the ∃R complexity class and explain how is the
+                                        Art Gallery Problem linked to that complexity class.</p>
+                                </section>
+
+                            </section>
+                            
+                            <section class="section section__well-known-results">
+                                <h2>Well-known results</h2>
+
+                            </section>
+                            
+                            <section class="section section__irrational-coord">
+                                <h2>Using irrational coordinates for guards</h2>
+
+                            </section>
+                            
+                            <section class="section section__illustrations-implementations">
+                                <h2>Illustrations & implementations</h2>
+
+                            </section>
+                            
+                            <section class="section section__art-gallery-problem">
+                                <h2>Glossary</h2>
+
+                            </section>
+                        </div>
+    
+                        <section class="report__bibliography">
+                            <h2>Bibliography</h2>
+
+                            <div class="citations">
+                                <article class="citation">
+                                    Une citation
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                </article>
 
                 <aside class="illustrations-toggle">
-                    <button class="illustration-toggle illustration1-toggle">Toggle illustration 1</button>
-                    <button class="illustration-toggle illustration2-toggle">Toggle illustration 2</button>
+                    <div class="illustrations-toggle-sticky">
+                        <button class="illustration-toggle illustration1-toggle">Toggle illustration 1</button>
+                        <button class="illustration-toggle illustration2-toggle">Toggle illustration 2</button>
+                    </div>
                 </aside>
             </div>
 
@@ -106,8 +221,8 @@
     <script type="text/javascript" src="./js/orthogonal.js" defer></script>
     <script type="text/javascript" src="./js/illustrations.js" defer></script>
 
+    <!-- Scripts for maths integration into HTML-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>

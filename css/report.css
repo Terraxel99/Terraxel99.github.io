@@ -1,0 +1,85 @@
+article.report {
+    padding: 0 2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.report__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.report__metadata {
+    margin-bottom: 3rem;
+}
+
+.report__authors {
+    display: block;
+    font-size: 1.1rem;
+}
+
+.report__date {
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+
+.report__contents-table ol {
+    counter-reset: item;
+}
+
+.report__contents-table ol li {
+    list-style: none;
+}
+
+.report__contents-table__listing > ol > li {
+    margin-bottom: 1rem;
+}
+
+.report__contents-table__listing > ol > li > ol {
+    margin-top: .3rem;
+}
+
+.report__contents-table ol li > a {
+    text-decoration: none;
+    color: #000;
+    border: 2px solid transparent;
+    padding: .1rem .3rem;
+}
+
+.report__contents-table ol li > a:hover,
+.report__contents-table ol li > a:focus,
+.report__contents-table ol li > a:active {
+    border: 2px solid var(--primary-color);
+}
+
+.report__contents-table ol li::before {
+    content: counters(item, ".") ". "; 
+    counter-increment: item;
+}
+
+.report__main-content {
+    margin-top: 5rem;
+}
+
+.report__main-content > section {
+    margin-top: 3rem;
+}
+
+.report__main-content > section:first-child {
+    margin-top: 0;
+}
+
+.report__bibliography {
+    margin-top: 5rem;
+}
+
+.subsection {
+    padding-left: 2rem;
+}

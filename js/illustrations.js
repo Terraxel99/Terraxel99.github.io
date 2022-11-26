@@ -18,5 +18,3 @@ function toggleModal(illustration, modalDiv) {
         modalElement.style.display = "none";
     }
 }
-
-
