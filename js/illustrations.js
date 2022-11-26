@@ -1,10 +1,6 @@
-
-let illustration1 = new p5(illustration1Sketch, "illustration1-canvas");
-let illustration2 = new p5(illustration2Sketch, "illustration2-canvas");
-
 const modals = [ 
-    { name : 'illustration1', illustration : illustration1 },
-    { name : 'illustration2', illustration : illustration2 },
+    { name : 'illustration1', illustration : new p5(illustration1Sketch, "illustration1-canvas") },
+    { name : 'illustration2', illustration : new p5(illustration2Sketch, "illustration2-canvas") },
 ];
 
 modals.forEach(modal => {
