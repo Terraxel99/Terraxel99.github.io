@@ -38,4 +38,4 @@ class EarFour {
 }
 
 // Some colors used in several scripts.
-const colors = ["black", "red", "green", "blue", "yellow", "grey"];
+const colors = ["black", "red", "green", "blue", "yellow", "grey", "white"];
