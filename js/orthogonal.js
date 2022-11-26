@@ -58,10 +58,10 @@ function resetpoints() {
 }
 
 function createPolygon() {
-    isPolygonCreated = true;
     //add the last edge connecting edge 0 with the last one to close the polygon.
 
     if (points.length > 3 && points.length % 2 === 0) {
+        isPolygonCreated = true;
         if(points[0].x === points[1].x){
             points[points.length - 1].y = points[0].y;
         }else if(points[0].y === points[1].y){
