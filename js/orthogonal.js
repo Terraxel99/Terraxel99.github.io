@@ -306,6 +306,7 @@ let illustration2Sketch = function (p) {
             egsList.push(new Edge(ptsList[0], ptsList[2], 5));
             egsList.push(new Edge(ptsList[1], ptsList[3], 5));
         }
+        // TODO : gérer si la quadrialisation ne marche pas
     };
 
     p.draw = function () {
