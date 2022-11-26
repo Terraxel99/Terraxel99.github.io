@@ -31,7 +31,7 @@ function setup() {
     button2.parent("illustration2-canvas");
     button2.mouseReleased(createPolygon);
 
-    button3 = createButton("Apply Chvátal's watchman theorem");
+    button3 = createButton("Apply theorem : Kahn, Klawe, and Kleitman");
     button3.position(195, 10);
     button3.style("z-index", "3");
     button3.parent("illustration2-canvas");
