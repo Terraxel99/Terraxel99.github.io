@@ -1,34 +1,5 @@
 /* eslint-disable no-undef, no-unused-vars */
 
-/* This class represents a point. */
-class Point {
-  constructor(x, y, nb, color, adjList) {
-    this.x = x;
-    this.y = y;
-    this.number = nb;
-    this.color = color; // 0 = black, 1 = red, 2 = green, 3 = blue
-    this.adjList = adjList;
-  }
-}
-
-/* This class represents an edge. */
-class Edge {
-  constructor(pt1, pt2, color) {
-    this.pt1 = pt1;
-    this.pt2 = pt2;
-    this.color = color;
-  }
-}
-
-/* This class represents an ear. */
-class Ear {
-  constructor(nghbr1, pt, nghbr2) {
-    this.nghbr1 = nghbr1;
-    this.pt = pt;
-    this.nghbr2 = nghbr2;
-  }
-}
-
 // global variables
 var points = [];
 var pointsForComputation = [];
@@ -36,7 +7,6 @@ var edges = [];
 var triangulationEdges = [];
 var isPolygonCreated = false;
 var occurenceOfEachColor = [0, 0, 0, 0];
-const colors = ["black", "red", "green", "blue"];
 
 function setup() {
   const canvasContainer = document.getElementById("illustration1-canvas");
@@ -70,7 +40,7 @@ function applyTriangulation() {
   if (isPolygonCreated) {
     reccursiveTriangulation(points, triangulationEdges);
   } else {
-    document.getElementById("illustation1-result").innerHTML =
+    document.getElementById("illustration1-result").innerHTML =
       "The polygon is not created yet";
   }
 }
@@ -81,7 +51,7 @@ function resetpoints() {
   edges = [];
   triangulationEdges = [];
   isPolygonCreated = false;
-  document.getElementById("illustation1-result").innerHTML = "";
+  document.getElementById("illustration1-result").innerHTML = "";
 }
 
 function createPolygon() {
@@ -202,7 +172,7 @@ function findEar(ptsList) {
         earNotFound = false;
         let neighbour1 = i === 0 ? ptsList.length - 1 : i - 1;
         let neighbour2 = i === ptsList.length - 1 ? 0 : i + 1;
-        ear = new Ear(ptsList[neighbour1], ptsList[i], ptsList[neighbour2]);
+        ear = new EarFour(ptsList[neighbour1], ptsList[i], ptsList[neighbour2]);
         //colorEar(ear);
       }
     }
@@ -242,7 +212,7 @@ function findGuardsPosition() {
       colorGuard = i; }
   }
 
-  document.getElementById("illustation1-result").innerHTML =
+  document.getElementById("illustration1-result").innerHTML =
     "The color of the guards is " + colors[colorGuard] + ".";
   return colorGuard;
 }
@@ -263,7 +233,7 @@ function reccursiveTriangulation(ptsList, egsList) {
     egsList.push(new Edge(ear.nghbr1, ear.nghbr2, 1));
     reccursiveTriangulation(newptsList, egsList);
   } else {
-    let ear = new Ear(ptsList[0], ptsList[1], ptsList[2]);
+    let ear = new EarFour(ptsList[0], ptsList[1], ptsList[2]);
     triColorGraph();
     findGuardsPosition();
   }
@@ -337,7 +307,6 @@ function resize() {
   resizeCanvas(canvasContainer.offsetWidth, 450);
 }
 
-const toggles = document.querySelectorAll(".illustration1-toggle");
-toggles.forEach((toggle) => {
+document.querySelectorAll(".illustration1-toggle")?.forEach((toggle) => {
   toggle.addEventListener("click", toggleModal);
 });

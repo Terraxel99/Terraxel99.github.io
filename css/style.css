@@ -140,11 +140,12 @@ main div.main-content.contributors {
 
 .contributor .contributor-details {
     margin-top: 1rem;
-    border-top: 1px solid var(--subaccent-color)
+    border-top: 1px solid var(--subaccent-color);
 }
 
 main div.main-content aside.illustrations-toggle {
     display: flex;
+    gap: 1rem;
 }
 
 .burger-icon span {
@@ -187,7 +188,7 @@ p.result-title {
     width: 95%;
 }
 
-button.illustration1-toggle {
+button.illustration-toggle {
     background-color: var(--secondary-color);
     color: #FFF;
 
@@ -198,13 +199,13 @@ button.illustration1-toggle {
     transition: background-color .2s ease-in-out;
 }
 
-button.illustration1-toggle:hover {
+button.illustration-toggle:hover {
     cursor: pointer;
 }
 
-button.illustration1-toggle:hover,
-button.illustration1-toggle:active,
-button.illustration1-toggle:focus {
+button.illustration-toggle:hover,
+button.illustration-toggle:active,
+button.illustration-toggle:focus {
     outline: none !important;
     background-color: var(--accent-color);
 }

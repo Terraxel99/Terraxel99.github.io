@@ -1,34 +1,6 @@
 /* eslint-disable no-undef, no-unused-vars */
 
-/* This class represents a point. */
-class Point {
-    constructor(x, y, nb, color, adjList) {
-        this.x = x;
-        this.y = y;
-        this.number = nb;
-        this.color = color; // 0 = black, 1 = red, 2 = green, 3 = blue, 4 = yellow
-        this.adjList = adjList;
-    }
-}
 
-/* This class represents an edge. */
-class Edge {
-    constructor(pt1, pt2, color) {
-        this.pt1 = pt1;
-        this.pt2 = pt2;
-        this.color = color;
-    }
-}
-
-/* This class represents an ear. */
-class Ear {
-    constructor(pt1, pt2, pt3, pt4) {
-        this.pt1 = pt1;
-        this.pt2 = pt2;
-        this.pt3 = pt3;
-        this.pt4 = pt4;
-    }
-}
 
 // global variables
 var points = [];
@@ -37,12 +9,12 @@ var edges = [];
 var quadrilateralizationEdges = [];
 var isPolygonCreated = false;
 var occurenceOfEachColor = [0, 0, 0, 0, 0, 0];
-const colors = ["black", "red", "green", "blue", "yellow", "grey"];
+
 
 function setup() {
-    const canvasContainer = document.getElementById("illustration1-canvas");
+    const canvasContainer = document.getElementById("illustration2-canvas");
     let canvas = createCanvas(canvasContainer.offsetWidth, 450);
-    canvas.parent("illustration1-canvas");
+    canvas.parent("illustration2-canvas");
     canvas.mousePressed(addPoint);
 
     fill("black");
@@ -50,19 +22,19 @@ function setup() {
     button = createButton("Clear");
     button.position(10, 10);
     button.style("z-index", "3");
-    button.parent("illustration1-canvas");
+    button.parent("illustration2-canvas");
     button.mouseReleased(resetpoints);
 
     button2 = createButton("Create polygon");
     button2.position(70, 10);
     button2.style("z-index", "3");
-    button2.parent("illustration1-canvas");
+    button2.parent("illustration2-canvas");
     button2.mouseReleased(createPolygon);
 
     button3 = createButton("Apply Chvátal's watchman theorem");
     button3.position(195, 10);
     button3.style("z-index", "3");
-    button3.parent("illustration1-canvas");
+    button3.parent("illustration2-canvas");
     button3.mouseReleased(applyQuadrilateralization);
 }
 
@@ -71,7 +43,7 @@ function applyQuadrilateralization() {
     if (isPolygonCreated) {
         reccursiveQuadrilateralization(points, quadrilateralizationEdges);
     } else {
-        document.getElementById("illustation1-result").innerHTML =
+        document.getElementById("illustration2-result").innerHTML =
             "The polygon is not created yet";
     }
 }
@@ -82,7 +54,7 @@ function resetpoints() {
     edges = [];
     quadrilateralizationEdges = [];
     isPolygonCreated = false;
-    document.getElementById("illustation1-result").innerHTML = "";
+    document.getElementById("illustration2-result").innerHTML = "";
 }
 
 function createPolygon() {
@@ -208,16 +180,16 @@ function get3Following(i, pts) {
     let tmpEar;
     switch (i) {
         case pts.length - 1:
-            tmpEar = new Ear(pts[pts.length - 1], pts[0], pts[1], pts[2]);
+            tmpEar = new EarFour(pts[pts.length - 1], pts[0], pts[1], pts[2]);
             break;
         case pts.length - 2:
-            tmpEar = new Ear(pts[pts.length - 2], pts[pts.length - 1], pts[0], pts[1]);
+            tmpEar = new EarFour(pts[pts.length - 2], pts[pts.length - 1], pts[0], pts[1]);
             break;
         case pts.length - 3:
-            tmpEar = new Ear(pts[pts.length - 3], pts[pts.length - 2], pts[pts.length - 1], pts[0]);
+            tmpEar = new EarFour(pts[pts.length - 3], pts[pts.length - 2], pts[pts.length - 1], pts[0]);
             break;
         default:
-            tmpEar = new Ear(pts[i], pts[i + 1], pts[i + 2], pts[i + 3]);
+            tmpEar = new EarFour(pts[i], pts[i + 1], pts[i + 2], pts[i + 3]);
     }
     return tmpEar;
 }
@@ -296,7 +268,7 @@ function findGuardsPosition() {
         if (occurenceOfEachColor[i] < min) colorGuard = i;
     }
 
-    //document.getElementById("illustation1-result").innerHTML =
+    //document.getElementById("illustration2-result").innerHTML =
     //    "The color of the guards is " + colors[colorGuard] + ".";
     return colorGuard;
 }
@@ -382,7 +354,7 @@ windowResized = function () {
 
 /** Toggles the modal of the illustration */
 function toggleModal() {
-    const modal = document.getElementById("illustration1-modal");
+    const modal = document.getElementById("illustration2-modal");
 
     if (modal.style.display === "none" || modal.style.display === "") {
         modal.style.display = "block";
@@ -393,11 +365,10 @@ function toggleModal() {
 }
 
 function resize() {
-    const canvasContainer = document.getElementById("illustration1-canvas");
+    const canvasContainer = document.getElementById("illustration2-canvas");
     resizeCanvas(canvasContainer.offsetWidth, 450);
 }
 
-const toggles = document.querySelectorAll(".illustration1-toggle");
-toggles.forEach((toggle) => {
+document.querySelectorAll(".illustration2-toggle")?.forEach((toggle) => {
     toggle.addEventListener("click", toggleModal);
 });

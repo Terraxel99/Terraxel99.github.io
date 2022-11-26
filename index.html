@@ -8,6 +8,7 @@
     <meta name="author" content="Kaplan Oruç, Gailly Vincent, Dudziak Thomas">
 
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/report.css">
 
     <title>Art Gallery problem</title>
 </head>
@@ -43,7 +44,8 @@
                 </section>
 
                 <aside class="illustrations-toggle">
-                    <button class="illustration1-toggle">Toggle illustration 1</button>
+                    <button class="illustration-toggle illustration1-toggle">Toggle illustration 1</button>
+                    <button class="illustration-toggle illustration2-toggle">Toggle illustration 2</button>
                 </aside>
             </div>
 
@@ -68,7 +70,27 @@
                 
                 <a class="illustration1-toggle modal-toggle-link"><span class="modal-close"></span></a>
             </div>
+        </div>
 
+        <div class="modal" id="illustration2-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Illustration 2</h3>
+    
+                    <p>
+                        You can draw your polygon below in a counterclockwise way, once it is
+                        finished click on the "create polygon" button to close it. Then press the
+                        "apply Chvátal's watchman theorem" button to see the positions and the color of the guards.
+                        <hr/>
+
+                        <p class="result-title">Result : </p><span id="illustation2-result"></span>
+                    </p>
+                </div>
+
+                <div id="illustration2-canvas" style="position: relative;"></div>
+                
+                <a class="illustration2-toggle modal-toggle-link"><span class="modal-close"></span></a>
+            </div>
         </div>
     
         <footer class="footer">
@@ -80,7 +102,9 @@
     </div>
 
     <script type="text/javascript" src="./libs/p5.min.js" defer></script>
+    <script type="text/javascript" src="./js/utils.js" defer></script>
     <script type="text/javascript" src="./js/illustration.js" defer></script>
+    <script type="text/javascript" src="./js/orthogonal.js" defer></script>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
