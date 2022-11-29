@@ -160,6 +160,7 @@
                     <div class="illustrations-toggle-sticky">
                         <button class="illustration-toggle illustration1-toggle">Toggle illustration 1</button>
                         <button class="illustration-toggle illustration2-toggle">Toggle illustration 2</button>
+                        <button class="illustration-toggle illustration3-toggle">Toggle illustration 3</button>
                     </div>
                 </aside>
             </div>
@@ -206,7 +207,27 @@
                 <a class="illustration2-toggle modal-toggle-link"><span class="modal-close"></span></a>
             </div>
         </div>
+
+        <div class="modal" id="illustration3-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Illustration 3</h3>
     
+                    <p>
+                        You can draw your polygon below. Once it is built click on the "create polygon" button to close it. Then press the
+                        "Apply theorem : Kahn, Klawe, and Kleitman" button to see the positions and the color of the guards. Remember that the amount of vertices of the polygon must be even.
+                        <hr/>
+
+                        <p class="result-title">Result : </p><span id="illustration3-result"></span>
+                    </p>
+                </div>
+
+                <div id="illustration3-canvas" style="position: relative;"></div>
+                
+                <a class="illustration3-toggle modal-toggle-link"><span class="modal-close"></span></a>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-separation">
                 <div class="description"><p>Kaplan Oruç & Gailly Vincent & Dudziak Thomas for Université Libre de Bruxelles - INFO-F420 Computational Geometry course</p></div>
