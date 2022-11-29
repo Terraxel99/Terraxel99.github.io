@@ -83,3 +83,25 @@ article.report {
 .subsection {
     padding-left: 2rem;
 }
+
+article.report figure {
+    position: relative;
+}
+
+article.report figure > div {
+    width: 50%;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+article.report figure img {
+    width: 100%;
+}
+
+article.report figure figcaption {
+    font-size: .9rem;
+    margin-top: .5rem;
+    text-align: center;
+}

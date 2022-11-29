@@ -107,7 +107,7 @@ main {
 main div.main-content {
     display: flex;
     flex-direction: column-reverse;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 main div.main-content.contributors {
@@ -141,17 +141,6 @@ main div.main-content.contributors {
 .contributor .contributor-details {
     margin-top: 1rem;
     border-top: 1px solid var(--subaccent-color);
-}
-
-main div.main-content aside.illustrations-toggle > div {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    
-    border-bottom: 2px solid gray;
 }
 
 .burger-icon span {
@@ -288,23 +277,6 @@ span.modal-close::after {
     }
 
     article.report {
-        width: 80%;
-        border-right: 2px solid gray;
         margin-top: 1rem;
-    }
-
-    main div.main-content aside.illustrations-toggle > div {
-        flex-direction: column;
-        justify-content: start;
-
-        width: 20%;
-
-        position: sticky; top: 10px;
-        
-        padding-left: 2rem;
-        padding-top: 0;
-        margin-top: 2rem;
-
-        border-bottom: 0;
     }
 }
