@@ -1,3 +1,5 @@
+body {counter-reset: figures;}
+
 article.report {
     padding: 0 2rem;
 }
@@ -86,6 +88,7 @@ article.report {
 
 article.report figure {
     position: relative;
+    margin: 2.5rem 0;
 }
 
 article.report figure > div {
@@ -100,8 +103,20 @@ article.report figure img {
     width: 100%;
 }
 
+article.report figure img.small-unconstrained {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: unset;
+}
+
 article.report figure figcaption {
     font-size: .9rem;
     margin-top: .5rem;
     text-align: center;
+    counter-increment: figures;
+}
+
+article.report figure figcaption::before {
+  content: 'Figure ' counter(figures) ': ';
 }

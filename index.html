@@ -69,7 +69,7 @@
                                             <li><a href="#">The orthogonal art gallery problem</a></li>
                                         </ol>
                                     </li>
-                                    <li><a href="#">Using irrational coordinates for guards</a></li>
+                                    <li><a href="#section__irrational-coord">Using irrational coordinates for guards</a></li>
                                     <li><a href="#">Illustrations & implementations</a></li>
                                     <li><a href="#">Glossary</a></li>
                                     <li><a href="#">Bibliography</a></li>
@@ -140,7 +140,7 @@
 
                             </section>
                             
-                            <section class="section section__irrational-coord">
+                            <section id="section__irrational-coord" class="section">
                                 <h2>Using irrational coordinates for guards</h2>
                                 <p>In this section, we will cover the usage of irrational numbers to describe the coordinates of guards. What if irrational numbers can be or cannot be used ?</p>
 
@@ -172,9 +172,79 @@
 
                                 <section id="subsection__irrational-guards" class="subsection">
                                     <h3>Irrational coordinates for guards are sometimes needed</h3>
-                                    <p>In this section, we will show, with an example, that there exists a polygon P having integer coordinates for its vertices that can be guarded with 3 guards having irrational coordinates while it is impossible to guard P with less than 4 guards having rational coordinates. To do so, we will follow a construction of a such a polygon given by Mikkel Abrahamsen, Anna Adamaszek, and Tillmann Miltzow (TODO : cite).</p>
+                                    <p>In this section, we will show, with an example, that there exists a polygon P having integer coordinates for its vertices that can be guarded with 3 guards having irrational coordinates while it is impossible to guard P with less than 4 guards having rational coordinates. To do so, we will follow a construction of a such a polygon given by Mikkel Abrahamsen, Anna Adamaszek, and Tillmann Miltzow (TODO : cite irrational book).</p>
                                     
-                                    <p>Firstly, we start with a basic rectangle of dimensions 4x20.</p>
+                                    <p>Firstly, we start with a basic rectangle of dimensions 4x20. Then, we will add a set \(T\) of six triangular "pockets" that we will call accordingly to their position in the polygon :</p>
+                                    <ul>
+                                        <li>\(T_{lt}\) (left-top)</li>
+                                        <li>\(T_{lb}\) (left-bottom)</li>
+                                        <li>\(T_{mt}\) (middle-top)</li>
+                                        <li>\(T_{mb}\) (middle-bottom)</li>
+                                        <li>\(T_{rt}\) (right-top)</li>
+                                        <li>\(T_{rb}\) (right-bottom)</li>
+                                    </ul>
+
+                                    <p>Then, we will also add a set \(Q\) of 4 quadrilateral pockets that will have pretty much the same naming :</p>
+                                    <ul>
+                                        <li>\(Q_{lt}\) (left-top)</li>
+                                        <li>\(Q_{lb}\) (left-bottom)</li>
+                                        <li>\(Q_{rt}\) (right-top)</li>
+                                        <li>\(Q_{rb}\) (right-bottom)</li>
+                                    </ul>
+
+                                    <p>And finally, we add a set \(R\) of 3 small rectangular pockets (again, named using the same convention) :</p>
+                                    <ul>
+                                        <li>\(R_{l}\) (left)</li>
+                                        <li>\(R_{m}\) (middle)</li>
+                                        <li>\(R_{r}\) (right)</li>
+                                    </ul>
+
+                                    <p>All the vertices are placed at specific places (= specific coordinates) for this polygon construction. We obtain the following polygon :</p>
+
+                                    <!-- TODO : Add illustration with just coordinates. -->
+
+                                    <p>It is clear that for the triangles \(T_{lt}\) and \(T_{lb}\) as well as for the triangles \(T_{rt}\) and \(T_{rb}\), we need a guard on a line connecting them to be sure that both they can be all seen by that guard. We will call those lines \(l_l\) and \(l_r\). Since an image is worth a thousand words, here are illustrations to understand how are drawn those lines \(l_l\) and \(l_r\) :</p>
+
+                                    <figure>
+                                        <div class="figure__container">
+                                            <img src="./images/verticaltrianglesline.png" class="small-unconstrained"
+                                                alt="How to connect a bottom and a top triangle such that a guard can see all the points of both">
+                                            <figcaption>How to connect a bottom and a top triangle such that a guard can see all the points of both</figcaption>
+                                        </div>
+                                    </figure>
+
+                                    <p>After that, we need to ensure that the two triangles \(T_{mb}\) and \(T_{mt}\) are also completely seen. Again, we clearly understand that they can be seen by a guard only if that guard lays on the line \(l_m\) connecting them. At the end of the day, we get the polygon \(P\) with the lines \(l_l\), \(l_m\) and \(l_r\) as on the following figure :</p>
+
+                                    <figure>
+                                        <div class="figure__container">
+                                            <img src="./images/fullpolygon3lines.png"
+                                                alt="The polygon P with the 3 lines where the guards should be positioned.">
+                                            <figcaption>The polygon P with the 3 lines where the guards should be positioned.</figcaption>
+                                        </div>
+                                    </figure>
+
+                                    <p>Now that we have taken in consideration the triangles of \(T\), we will concentrate our efforts on seeing the whole base rectangle as well as the 4 quadrilaterals of \(Q\). Let us start by studying the image on the left of the figure 5. If we fix the position of the guard on the line \(l\) in such a way that the guard (let us call it \(g_1\)) sees at least a portion of the bottom edge \(e_b\) and a portion of the edge \(e_t\), we can define \(p_b\) as the leftmost point on \(e_b\) that \(g_1\) can see. In a similar way, we define \(p_t\) as the leftmost point seen by \(g_1\) on the top edge \(e_t\). Clearly, if we move \(g_1\) upwards, \(p_b\) will move to the left while \(p_t\) will move to the right. The opposite happens when we move \(g_1\) downwards. Now, let us call \(b\) the bottom-right point of the quadrilateral \(Q_{lt}\) and \(d\) the top-right point of the quadrilateral \(Q_{rt}\). Then, we can create a line containing \(p_t\) and \(b\) and a second line containing \(p_b\) and \(d\). Those two lines will obviously intersect each other and we will call the intersection \(i\). It is clear that the triangle \(ibd\) is the triangle where we need to put a second guard \(g_2\) in order to see everything that remains that \(g_1\) can not see. If we repeat this for every possible position of \(g_1\) on the line \(l\), we obtain a curve that we will call \(C\). The guard \(g_2\) <span class="underline">must</span> be placed on the right of the line \(bd\) and on the left of the curve \(C\).</p>
+
+                                    <figure>
+                                        <div class="figure__container">
+                                            <img src="./images/polygonwithquadri.png"
+                                                alt="Guard the half-polygon with only quadrilateral pockets.">
+                                            <figcaption>How to guard the half-polygon with only quadrilateral pockets.</figcaption>
+                                        </div>
+                                    </figure>
+
+                                    <p>Now, we can apply the same to the right part of the whole polygon \(P\) defined earlier. We get two curves \(c_l\) and \(c_r\) that defines the region where we could guard the whole polygon with 3 guards. </p>
+                                    <p>A guard \(g_l\) must be on the line \(l_l\) to guard the triangular pockets \(T_{lt}\) and \(T_{lb}\) but that same guard must be placed at a correct Y-coordinate so that it can also guard the rectangle \(R_l\) that belongs to the polygon \(P\). We work on a similar way to obtain a guard \(g_r\) on the line \(l_r\). And finally, we want to have the last guard </p>
+
+                                    <figure>
+                                        <div class="figure__container">
+                                            <img src="./images/fullpolygon3guardsirrational.png"
+                                                alt="Guard the half-polygon with only quadrilateral pockets.">
+                                            <figcaption>How to guard the half-polygon with only quadrilateral pockets.</figcaption>
+                                        </div>
+                                    </figure>
+
+
                                 </section>
                             </section>
                             
