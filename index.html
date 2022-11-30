@@ -50,7 +50,7 @@
                             <div class="report__contents-table__listing">
                                 <ol>
                                     <li><a href="#section__introduction">Introduction</a></li>
-                                    <li><a href="#section__art-gallery-problem"">The Art Gallery Problem</a>
+                                    <li><a href="#section__art-gallery-problem">The Art Gallery Problem</a>
                                         <ol>
                                             <li><a href="#subsection__art-gallery-definition">Defining the problem</a></li>
                                             <li><a href="#subsection__art-gallery-applications">Real-life applications</a></li>
@@ -65,10 +65,11 @@
                                     </li>
                                     <li><a href="#">Well known results</a>
                                         <ol>
-                                            <li><a href="#">Chvátal's watchman theorem and Steve Fisk's short proof</a></li>
-                                            <li><a href="#">The orthogonal art gallery problem</a></li>
+                                            <li><a href="#subsection__chvatal">Chvátal's watchman theorem and Steve Fisk's short proof</a></li>
+                                            <li><a href="#subsection__orthogonal">The orthogonal art gallery problem</a></li>
                                         </ol>
                                     </li>
+                                    <li><a href="#section__visibility-polygon">Visibility Polygon</li>
                                     <li><a href="#section__irrational-coord">Using irrational coordinates for guards</a></li>
                                     <li><a href="#">Illustrations & implementations</a></li>
                                     <li><a href="#">Glossary</a></li>
@@ -136,6 +137,32 @@
                                     <p></p>
 
                                     <button class="illustration-toggle illustration1-toggle">Toggle illustration 1</button>
+                                </section>
+                                <section id="subsection__orthogonal" class="subsection">
+                                    <h3>The orthogonal art gallery problem</h3>
+                                    <p>Kahn, Klawe, and Kleitman have established that any orthogonal polygon is convexly quadrilateralizable (TODO : citeKahn1983TraditionalGR). The proof is quite long but is logical and is also explained in Rourke's book (TODO : cite o1987art p.45 ). Following this, it is possible to prove that (TODO : math floor(n/4)) guards are sufficient to cover an orthogonal polygon, like Fisk's proof.</p>
+                                    <figure>(TODO : figure)</figure>
+                                    <p><span class="underline">Theorem :</span> Let \(P\) be a orthogonal polygon with \(n\) vertices. Then, we can find a guard set \(S \subset P\) of cardinality at most (TODO : math floor(n/4)) (TODO : cite o1987art p46).</p>
+                                    <p><span class="underline">Proof :</span> Let \(P\) be an orthogonal polygon and \(G\) the quadrilateralization of \(P\). By adding the diagonals to each square, we end up with a planar graph \(G\). Since every planar graph is 4-colorable (TODO : cite Gonthier2008FormalPF) and the polygon \(P\) is exclusively composed of convex squares. Each guard completely covers at least one square of the quadrilateralization. As in Chvátal's Proof, we can define four subsets and deduce that one of the four subsets has a cardinality (TODO : math floor(n/4)).</p>
+                                    <button class="illustration-toggle illustration2-toggle">Toggle illustration 2</button>
+                                </section>
+                            </section>
+
+                            <section class="section__visibility-polygon">
+                                <h2>Visibility Polygon</h2>
+                                <p>For a polygon \(P\), a point \(a\) is <span class="underline">visible</span> from a point \(b\), if the line segment \(ab\) is entirely inside \(P\). In other words, let imagine a chain of vertices \(Q = (q_1, q_2,..., q_n)\) in the same plane of \(a\) and \(b\), which can be assimilated to the polygon \(P\). \(a\) and \(b\) are visible to each other if the line segment \(ab\) doesn't intersect any line in the chain \(Q\).</p>
+                                
+                                <section id="subsection__visibility-polygon-definition" class="subsection">
+                                    <h3>Definition of visibility polygon</h3>
+                                    <p><span class="underline">The visibility polygon</span> from a point \(a\) can be defined as following : Assuming the point \(a\) is inside the polygon \(P\), the visibility polygon is noted as \(VP(P,a)\), which correspond to the set of points in \(P\) visible by \(a\).(TODO : cite ElGindy1981ALA p186-187).</p>
+                                    <p> \(VP(P,a) = \{b|b \in P \space and \space ab \space \bigcap \space P = ab\}\).</p>
+                                    <figure>(TODO : figure)</figure>
+                                </section>
+                                <section id="subsection__visibility-polygon-implementation" class="subsection">
+                                    <h3>Implementation of visibility polygon</h3>
+                                    <p>To compute the vibility polygon for a specific point \(a\), multiple algorithms with different techniques exist. The most common method is by using the circular sweeping method by sending rays from the point \(a\) to all the verticies \(V_i\) of the polygon \(P\). Then removing the rays which cross any edge of the polygon before reaching the corresponding vertex \(V_i\). And for the rays which can continue in the polygon after reaching the vertex \(V_i\), compute the next intersection with the polygon. At the end all the end point of the rays will form the boundaries of \(V(P,a)\).</p>
+                                    <p>The algorithm implementend in the illustration 3 bellow, is based on the algorithm explained by Asano Tetsuo (TODO : cite AsanoTetsuo1985EAFF p557-559). He explained how to compute the visibility polygon for a polygon with and without holes, and the complexity at the worst case is \(O(n \space log \space n)\).</p>
+                                    <button class="illustration-toggle illustration3-toggle">Toggle illustration 3</button>
                                 </section>
 
                             </section>
