@@ -69,7 +69,12 @@
                                             <li><a href="#subsection__orthogonal">The orthogonal art gallery problem</a></li>
                                         </ol>
                                     </li>
-                                    <li><a href="#section__visibility-polygon">Visibility Polygon</li>
+                                    <li><a href="#section__visibility-polygon">Visibility Polygon</a>
+                                        <ol>
+                                            <li><a href="#subsection__visibility-polygon-definition">Definition of visibility polygon</a></li>
+                                            <li><a href="#subsection__visibility-polygon-implementation">Implementation of visibility polygon</a></li>
+                                        </ol>
+                                    </li>
                                     <li><a href="#section__irrational-coord">Using irrational coordinates for guards</a></li>
                                     <li><a href="#">Glossary</a></li>
                                     <li><a href="#">Bibliography</a></li>
@@ -135,8 +140,25 @@
                                 <section id="subsection__orthogonal" class="subsection">
                                     <h3>The orthogonal art gallery problem</h3>
                                     <p>Kahn, Klawe, and Kleitman have established that any orthogonal polygon is convexly quadrilateralizable (TODO : citeKahn1983TraditionalGR). The proof is quite long but is logical and is also explained in Rourke's book (TODO : cite o1987art p.45 ). Following this, it is possible to prove that (TODO : math floor(n/4)) guards are sufficient to cover an orthogonal polygon, like Fisk's proof.</p>
-                                    <figure>(TODO : figure)</figure>
+                                    
+                                    <figure>
+                                        <div class="figure__container">
+                                            <img src="./images/Orthogonal.png"
+                                                alt="Quadrilaterized Orthogonal polygon">
+                                            <figcaption>Quadrilaterized Orthogonal polygon</figcaption>
+                                        </div>
+                                    </figure>
+
                                     <p><span class="underline">Theorem :</span> Let \(P\) be a orthogonal polygon with \(n\) vertices. Then, we can find a guard set \(S \subset P\) of cardinality at most (TODO : math floor(n/4)) (TODO : cite o1987art p46).</p>
+                                    
+                                    <figure>
+                                        <div class="figure__container">
+                                            <img src="./images/Orthogonal_Computed.png"
+                                                alt="Example of Orthogonal polygon">
+                                            <figcaption>Example of Orthogonal polygon</figcaption>
+                                        </div>
+                                    </figure>
+                                    
                                     <p><span class="underline">Proof :</span> Let \(P\) be an orthogonal polygon and \(G\) the quadrilateralization of \(P\). By adding the diagonals to each square, we end up with a planar graph \(G\). Since every planar graph is 4-colorable (TODO : cite Gonthier2008FormalPF) and the polygon \(P\) is exclusively composed of convex squares. Each guard completely covers at least one square of the quadrilateralization. As in Chvátal's Proof, we can define four subsets and deduce that one of the four subsets has a cardinality (TODO : math floor(n/4)).</p>
                                     <button class="illustration-toggle illustration2-toggle">Toggle illustration 2</button>
                                 </section>
@@ -150,7 +172,15 @@
                                     <h3>Definition of visibility polygon</h3>
                                     <p><span class="underline">The visibility polygon</span> from a point \(a\) can be defined as following : Assuming the point \(a\) is inside the polygon \(P\), the visibility polygon is noted as \(VP(P,a)\), which correspond to the set of points in \(P\) visible by \(a\).(TODO : cite ElGindy1981ALA p186-187).</p>
                                     <p> \(VP(P,a) = \{b|b \in P \space and \space ab \space \bigcap \space P = ab\}\).</p>
-                                    <figure>(TODO : figure)</figure>
+
+                                    <figure>
+                                        <div class="figure__container">
+                                            <img src="./images/Visibility.png"
+                                                alt="Example of Visibility polygon of point A (guard)">
+                                            <figcaption>Example of Visibility polygon of point A (guard)</figcaption>
+                                        </div>
+                                    </figure>
+
                                 </section>
                                 <section id="subsection__visibility-polygon-implementation" class="subsection">
                                     <h3>Implementation of visibility polygon</h3>
