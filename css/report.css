@@ -120,3 +120,7 @@ article.report figure figcaption {
 article.report figure figcaption::before {
   content: 'Figure ' counter(figures) ': ';
 }
+
+article.report section#section__glossary ul > li {
+    margin-bottom: .5rem;
+}

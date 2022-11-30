@@ -76,7 +76,7 @@
                                         </ol>
                                     </li>
                                     <li><a href="#section__irrational-coord">Using irrational coordinates for guards</a></li>
-                                    <li><a href="#">Glossary</a></li>
+                                    <li><a href="#section__glossary">Glossary</a></li>
                                     <li><a href="#">Bibliography</a></li>
                                 </ol>
                             </div>
@@ -137,6 +137,7 @@
 
                                     <button class="illustration-toggle illustration1-toggle">Toggle illustration 1</button>
                                 </section>
+
                                 <section id="subsection__orthogonal" class="subsection">
                                     <h3>The orthogonal art gallery problem</h3>
                                     <p>Kahn, Klawe, and Kleitman have established that any orthogonal polygon is convexly quadrilateralizable (TODO : citeKahn1983TraditionalGR). The proof is quite long but is logical and is also explained in Rourke's book (TODO : cite o1987art p.45 ). Following this, it is possible to prove that (TODO : math floor(n/4)) guards are sufficient to cover an orthogonal polygon, like Fisk's proof.</p>
@@ -182,13 +183,13 @@
                                     </figure>
 
                                 </section>
+
                                 <section id="subsection__visibility-polygon-implementation" class="subsection">
                                     <h3>Implementation of visibility polygon</h3>
                                     <p>To compute the vibility polygon for a specific point \(a\), multiple algorithms with different techniques exist. The most common method is by using the circular sweeping method by sending rays from the point \(a\) to all the verticies \(V_i\) of the polygon \(P\). Then removing the rays which cross any edge of the polygon before reaching the corresponding vertex \(V_i\). And for the rays which can continue in the polygon after reaching the vertex \(V_i\), compute the next intersection with the polygon. At the end all the end point of the rays will form the boundaries of \(V(P,a)\).</p>
                                     <p>The algorithm implementend in the illustration 3 bellow, is based on the algorithm explained by Asano Tetsuo (TODO : cite AsanoTetsuo1985EAFF p557-559). He explained how to compute the visibility polygon for a polygon with and without holes, and the complexity at the worst case is \(O(n \space log \space n)\).</p>
                                     <button class="illustration-toggle illustration3-toggle">Toggle illustration 3</button>
                                 </section>
-
                             </section>
                             
                             <section id="section__irrational-coord" class="section">
@@ -285,7 +286,7 @@
                                     </figure>
 
                                     <p>Now, we can apply the same to the right part of the whole polygon \(P\) defined earlier. We get two curves \(c_l\) and \(c_r\) that defines the region where we could guard the whole polygon with 3 guards. </p>
-                                    <p>A guard \(g_l\) must be on the line \(l_l\) to guard the triangular pockets \(T_{lt}\) and \(T_{lb}\) but that same guard must be placed at a correct Y-coordinate so that it can also guard the rectangle \(R_l\) that belongs to the polygon \(P\). We work on a similar way to obtain a guard \(g_r\) on the line \(l_r\). And finally, we want to have the last guard </p>
+                                    <p>A guard \(g_l\) must be on the line \(l_l\) to guard the triangular pockets \(T_{lt}\) and \(T_{lb}\) but that same guard must be placed at a correct Y-coordinate so that it can also guard the rectangle \(R_l\) that belongs to the polygon \(P\). We work on a similar way to obtain a guard \(g_r\) on the line \(l_r\). And finally, we want to have the last guard \(g_m\) on the line \(l_m\) to guard the two triangles \(T_{lb}\) and \(T_{rt}\), but also in the intersection formed by the two curves \(C_l\) and \(C_r\). Last but not least, we must also place \(g_m\) in such a way that it also sees the rectangle \(R_m\) :</p>
 
                                     <figure>
                                         <div class="figure__container">
@@ -295,13 +296,26 @@
                                         </div>
                                     </figure>
 
+                                    <!-- TODO ADD CITATION CALCUL COORDONNEES -->
+                                    <p>With a computation that will not be detailed here (for more details see ...), we can determine that these 3 points exists but have irrational coordinates.</p>
+                                    <p>Also, it is clear that if we scale the polygon \(P\) by the LCM of the denominators of the coordinates, we obtain a polygon having vertices with integer coordinates without changing the number of guards needed for the polygon. In conclusion, we have a polygon with vertices having integer coordinates that can be guarded by 3 irrational guards.</p>
 
+                                    <p>It is easy to see that if we move slightly \(g_l\) and \(g_r\) on their line so that they have no more irrational coordinates, we can add a guard \(g_{m1}\) slightly to the left of \(g_m\) and a guard \(g_{m2}\) slightly to the right to correct the small portion of the polygon \(P\) that we do not see after moving \(g_l\) and \(g_r\). We can, of course, remove \(g_m\).</p>
+                                    <p>We can see that the polygon \(P\) can be guarded by 3 irrational guards but can not be guarded by less than 4 guards if we can not use irrational coordinates for guards.</p>
                                 </section>
                             </section>
                             
-                            <section class="section section__glossary">
+                            <section id="section__glossary" class="section">
                                 <h2>Glossary</h2>
-
+                                
+                                <div>
+                                    <ul class="glossary__items">
+                                        <li><span class="underline">Polygon :</span>A polygon is a plane geometric figure where the consecutive segments forming a cycle are the edges. And where the ends of each edge are the vertices of the polygon.</li>
+                                        <li><span class="underline">Simple polygon :</span>A simple polygon is a polygon in which the segments forming the cycle do not intersect. That means, two consecutive segments are touching each other only by their vertices and the non-consecutive segments are not touching each other.</li>
+                                        <li><span class="underline">Orthogonal polygon :</span>An orthogonal polygon is a simple polygon whose edges are aligned with a pair of perpendicular axes. This means that the angles in the polygon are either 90° or 270°.</li>
+                                        <li><span class="underline">Problem reduction :</span>Reducing a problem A to a problem B is simply the fact of transforming an instance of the problem A in an instance of the problem B.</li>
+                                    </ul>
+                                </div>
                             </section>
                         </div>
     
