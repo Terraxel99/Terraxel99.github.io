@@ -194,6 +194,7 @@
                             
                             <section id="section__irrational-coord" class="section">
                                 <h2>Using irrational coordinates for guards</h2>
+                                <button class="illustration-toggle illustration4-toggle">Toggle illustration 4 (to relocate)</button>
                                 <p>In this section, we will cover the usage of irrational numbers to describe the coordinates of guards. What if irrational numbers can be or cannot be used ?</p>
 
                                 <section id="subsection__monotone" class="subsection">
@@ -394,6 +395,25 @@
             </div>
         </div>
 
+        <div class="modal" id="illustration4-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Illustration 4</h3>
+    
+                    <p>
+                        Test
+                        <hr/>
+
+                        <p class="result-title">Result : </p><span id="illustration4-result"></span>
+                    </p>
+                </div>
+
+                <div id="illustration4-canvas" style="position: relative;"></div>
+                
+                <a class="illustration4-toggle modal-toggle-link"><span class="modal-close"></span></a>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-separation">
                 <div class="description"><p>Kaplan Oruç & Gailly Vincent & Dudziak Thomas for Université Libre de Bruxelles - INFO-F420 Computational Geometry course</p></div>
@@ -407,6 +427,7 @@
     <script type="text/javascript" src="./js/chvatal.js" defer></script>
     <script type="text/javascript" src="./js/orthogonal.js" defer></script>
     <script type="text/javascript" src="./js/visibility.js" defer></script>
+    <script type="text/javascript" src="./js/irrational.js" defer></script>
     <script type="text/javascript" src="./js/illustrations.js" defer></script>
 
     <!-- Scripts for maths integration into HTML-->

@@ -2,6 +2,7 @@ const modals = [
     { name : 'illustration1', illustration : new p5(illustration1Sketch, "illustration1-canvas") },
     { name : 'illustration2', illustration : new p5(illustration2Sketch, "illustration2-canvas") },
     { name : 'illustration3', illustration : new p5(illustration3Sketch, "illustration3-canvas") },
+    { name : 'illustration4', illustration : new p5(illustration4Sketch, "illustration4-canvas") },
 ];
 
 modals.forEach(modal => {

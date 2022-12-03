@@ -1,7 +1,12 @@
 /* eslint-disable no-undef, no-unused-vars */
 
-let illustration3Sketch = function (p) {
+let illustration4Sketch = function (p) {
 
+    const coords = [
+        [0,0],[1.9,0],[2,-0.5],[2,0],[3,0],[3,-0.15],[3.5,0],[4,0],[4,-12/19],[8,-18/19],[8,0],[12,0],[12,-34/21],[16,-36/21],[16,0],[18.9,0],[19,-0.5],[19,0],
+        [20,0],[20,0.5],[30,0.5],[30,0.6],[20,0.6],[20,4],[19.1,4],[19,4.5],[19,4],[17+(2/6),4],[17+(2/6),4.15],[16+(5/6),4],[16,4],[16,1776/375],[12,2486/375],
+        [12,4],[10.6,4],[10.6,8],[10.5,8],[10.5,4],[8,4],[8,294/47],[4,280/47],[4,4],[2.1,4],[2,4.5],[2,4],[0,4],[0,1.8],[-10,1.8],[-10,1.7],[0,1.7]
+    ];
     var guards = []; //List of guards
     var points = []; //The points of the polygon
     var edges = []; //The edges of the polygon
@@ -9,34 +14,34 @@ let illustration3Sketch = function (p) {
     var isRaysDisplayed = false;
 
     p.setup = function () {
-        const canvasContainer = document.getElementById("illustration3-canvas");
+        const canvasContainer = document.getElementById("illustration4-canvas");
         let canvas = p.createCanvas(canvasContainer.offsetWidth, 450);
-        canvas.mousePressed(p.addPoint);
+        canvas.mousePressed(p.addGuard);
 
         p.fill("black");
         p.textSize(40);
         button = p.createButton("Clear");
         button.position(10, 10);
         button.style("z-index", "3");
-        button.parent("illustration3-canvas");
+        button.parent("illustration4-canvas");
         button.mouseReleased(p.resetPoints);
 
-        button2 = p.createButton("Create polygon");
+        button2 = p.createButton("Create the polygon");
         button2.position(70, 10);
         button2.style("z-index", "3");
-        button2.parent("illustration3-canvas");
+        button2.parent("illustration4-canvas");
         button2.mouseReleased(p.createPolygon);
 
         button3 = p.createButton("Compute Visibility");
-        button3.position(195, 10);
+        button3.position(220, 10);
         button3.style("z-index", "3");
-        button3.parent("illustration3-canvas");
+        button3.parent("illustration4-canvas");
         button3.mouseReleased(p.computeVisibility);
 
         button4 = p.createButton("Display Rays");
-        button4.position(340, 10);
+        button4.position(365, 10);
         button3.style("z-index", "3");
-        button4.parent("illustration3-canvas");
+        button4.parent("illustration4-canvas");
         button4.mouseReleased(p.displayRays);
 
     };
@@ -58,10 +63,10 @@ let illustration3Sketch = function (p) {
                 guards[g].visionP.push(new Edge(currV[currV.length - 1].pt2,
                     currV[0].pt2, 3));
             }
-            document.getElementById("illustration3-result").innerHTML =
+            document.getElementById("illustration4-result").innerHTML =
                 "All fields of view computed";
         }else{
-            document.getElementById("illustration3-result").innerHTML =
+            document.getElementById("illustration4-result").innerHTML =
                 "Build the polygon and then place guards in it";
         }
     };
@@ -230,17 +235,33 @@ let illustration3Sketch = function (p) {
         guards = [];
         isPolygonCreated = false;
         isRaysDisplayed = false;
-        document.getElementById("illustration3-result").innerHTML = "";
+        document.getElementById("illustration4-result").innerHTML = "";
     };
 
     p.createPolygon = function () {
 
-        if (points.length > 2) {
+        if(!isPolygonCreated){
             isPolygonCreated = true;
+
+            for(let i = 0; i< coords.length; i++){
+                points.push(new Point(coords[i][0], coords[i][1],points.length, 0,));
+            }
+
+            let multiplier = 35;
+            let xOffset = 400;
+            let yOffset = 350;
+            
+            for(let i = 0; i< points.length;i++){
+                points[i].x = (points[i].x * multiplier)+xOffset;
+                points[i].y = (points[i].y * (-multiplier))+yOffset;
+                if (i > 0) {
+                    edges.push(
+                        new Edge(points[i-1], points[i], 0)
+                    );
+                }
+            }
+
             edges.push(new Edge(points[0], points[points.length - 1], 0));
-        } else {
-            document.getElementById("illustration3-result").innerHTML =
-                "Cannot build the polygon, it should have at least 3 points";
         }
     };
 
@@ -248,21 +269,18 @@ let illustration3Sketch = function (p) {
         isRaysDisplayed = !isRaysDisplayed;
     }
 
-    /* This function add a point to the list of points of guards*/
-    p.addPoint = function () {
-        if (!isPolygonCreated) {
-            points.push(new Point(p.mouseX, p.mouseY, points.length, 0, []));
-            if (points.length > 1) {
-                edges.push(
-                    new Edge(points[points.length - 2], points[points.length - 1], 0)
-                );
-            }
-        } else if(p.isPtInsidePolygon(new Point(p.mouseX, p.mouseY))){
+    /* This function add guards in the canvas */
+    p.addGuard = function () {
+        if(p.isPtInsidePolygon(new Point(p.mouseX, p.mouseY))){
             guards.push(new Guard(p.mouseX, p.mouseY, guards.length, 1));
-            document.getElementById("illustration3-result").innerHTML =
+            document.getElementById("illustration4-result").innerHTML =
                 "";
-        } else{
-            document.getElementById("illustration3-result").innerHTML =
+        }if(!p.isPolygonCreated){
+            document.getElementById("illustration4-result").innerHTML =
+                "First create the polygon";
+        }
+        else{
+            document.getElementById("illustration4-result").innerHTML =
                 "Cannot add a guard outside the polygon";
         }
     };
@@ -283,14 +301,6 @@ let illustration3Sketch = function (p) {
 
         //This part draws the points and lines of the polygon
         let c;
-        for (let i = 0; i < points.length; i++) {
-            c = p.color(colors[points[i].color]);
-            p.fill(c);
-            p.noStroke();
-            p.textSize(14);
-            p.text(points[i].number, points[i].x + 5, points[i].y + 5);
-            p.ellipse(points[i].x, points[i].y, 7, 7);
-        }
         for (let i = 0; i < edges.length; i++) {
             c = p.color(colors[edges[i].color]);
             p.stroke(c);
@@ -334,7 +344,7 @@ let illustration3Sketch = function (p) {
     p.windowResized = () => p.customResize();
 
     p.customResize = function () {
-        const canvasContainer = document.getElementById("illustration3-canvas");
+        const canvasContainer = document.getElementById("illustration4-canvas");
         p.resizeCanvas(canvasContainer.offsetWidth, 450);
     };
 };
