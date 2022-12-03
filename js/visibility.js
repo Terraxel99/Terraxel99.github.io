@@ -22,6 +22,7 @@ let illustration3Sketch = function (p) {
     var points = []; //The points of the polygon
     var edges = []; //The edges of the polygon
     var isPolygonCreated = false;
+    var isRaysDisplayed = false;
 
     p.setup = function () {
         const canvasContainer = document.getElementById("illustration3-canvas");
@@ -48,6 +49,12 @@ let illustration3Sketch = function (p) {
         button3.parent("illustration3-canvas");
         button3.mouseReleased(p.computeVisibility);
 
+        button4 = p.createButton("Display Rays");
+        button4.position(340, 10);
+        button3.style("z-index", "3");
+        button4.parent("illustration3-canvas");
+        button4.mouseReleased(p.displayRays);
+
     };
 
     /**
@@ -66,7 +73,6 @@ let illustration3Sketch = function (p) {
                 }
                 guards[g].visionP.push(new Edge(currV[currV.length - 1].pt2,
                     currV[0].pt2, 3));
-                //console.log(guards[g].visionP);
             }
             document.getElementById("illustration3-result").innerHTML =
                 "All fields of view computed";
@@ -93,7 +99,6 @@ let illustration3Sketch = function (p) {
 
             //intersection before ith ray
             if (p.computeDeterminant(grd, pt, predecessor) < 0 && p.computeDeterminant(grd, pt, follower) < 0) {
-                //console.log("need one more pts");
                 intersection = p.findClosesetIntersection(grd, pt);
                 newVisionEdges.push(new Edge(new Point(grd.x, grd.y), intersection, 2));
 
@@ -101,13 +106,10 @@ let illustration3Sketch = function (p) {
             newVisionEdges.push(visionEdgesSweep[i]);
             //intersection after ith ray
             if (p.computeDeterminant(grd, pt, predecessor) > 0 && p.computeDeterminant(grd, pt, follower) > 0) {
-                //console.log("need one more pts");
                 intersection = p.findClosesetIntersection(grd, pt);
                 newVisionEdges.push(new Edge(new Point(grd.x, grd.y), intersection, 2));
             }
         }
-        //console.log(visionEdgesSweep);
-        //console.log(newVisionEdges);
         return newVisionEdges;
     }
 
@@ -118,7 +120,6 @@ let illustration3Sketch = function (p) {
         let intersectionList = [];
         for (let i = 0; i < edges.length; i++) {
             if (p.rayFromAToBHitsSegmentCD(pt1, pt2, edges[i].pt1, edges[i].pt2)) {
-                //console.log("intersection");
                 intersectionList.push(p.intersection(pt1, pt2, edges[i].pt1, edges[i].pt2));
             }
         }
@@ -174,7 +175,6 @@ let illustration3Sketch = function (p) {
                 return false;
             }
         }
-        //console.log(nbCross);
         return true;
     }
 
@@ -228,6 +228,16 @@ let illustration3Sketch = function (p) {
         );
     }
 
+    p.isPtInsidePolygon = function(pt){
+        let nbCross = 0;
+        for(let i = 0; i < edges.length; i++){
+            if(p.rayFromAToBHitsSegmentCD(pt, new Point(pt.x+0.01,pt.y+0.01), edges[i].pt1, edges[i].pt2)){
+                nbCross++;
+            }
+        }
+        return nbCross % 2 === 1;
+    }
+
 
     /* This function clear the list of points, the polygon and the result computed */
     p.resetPoints = function () {
@@ -235,6 +245,7 @@ let illustration3Sketch = function (p) {
         edges = [];
         guards = [];
         isPolygonCreated = false;
+        isRaysDisplayed = false;
         document.getElementById("illustration3-result").innerHTML = "";
     };
 
@@ -252,6 +263,10 @@ let illustration3Sketch = function (p) {
         }
     };
 
+    p.displayRays = function () {
+        isRaysDisplayed = !isRaysDisplayed;
+    }
+
     /* This function add a point to the list of points and call the function 
     of the exercice if needed */
     p.addPoint = function () {
@@ -264,8 +279,13 @@ let illustration3Sketch = function (p) {
                     new Edge(points[points.length - 2], points[points.length - 1], 0)
                 );
             }
-        } else {
+        } else if(p.isPtInsidePolygon(new Point(p.mouseX, p.mouseY))){
             guards.push(new Guard(p.mouseX, p.mouseY, guards.length, 1));
+            document.getElementById("illustration3-result").innerHTML =
+                "";
+        } else{
+            document.getElementById("illustration3-result").innerHTML =
+                "Cannot add a guard outside the polygon";
         }
     };
 
@@ -311,12 +331,14 @@ let illustration3Sketch = function (p) {
             p.text(currGuard.number, currGuard.x + 5, currGuard.y + 5);
             p.ellipse(currGuard.x, currGuard.y, 7, 7);
 
-            //display his green rays
-            for (let i = 0; i < currGuard.vision.length; i++) {
-                c = p.color(colors[currGuard.vision[i].color]);
-                p.stroke(c);
-                p.fill(c);
-                p.line(currGuard.vision[i].pt1.x, currGuard.vision[i].pt1.y, currGuard.vision[i].pt2.x, currGuard.vision[i].pt2.y);
+            if(isRaysDisplayed){
+                //display his green rays
+                for (let i = 0; i < currGuard.vision.length; i++) {
+                    c = p.color(colors[currGuard.vision[i].color]);
+                    p.stroke(c);
+                    p.fill(c);
+                    p.line(currGuard.vision[i].pt1.x, currGuard.vision[i].pt1.y, currGuard.vision[i].pt2.x, currGuard.vision[i].pt2.y);
+                }
             }
             //display his fied of view
             for (let i = 0; i < currGuard.visionP.length; i++) {
