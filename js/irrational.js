@@ -275,13 +275,12 @@ let illustration4Sketch = function (p) {
             guards.push(new Guard(p.mouseX, p.mouseY, guards.length, 1));
             document.getElementById("illustration4-result").innerHTML =
                 "";
-        }if(!p.isPolygonCreated){
+        }else if(!p.isPtInsidePolygon(new Point(p.mouseX, p.mouseY)) && isPolygonCreated){
+                document.getElementById("illustration4-result").innerHTML =
+                "Cannot add a guard outside the polygon";
+        }else{
             document.getElementById("illustration4-result").innerHTML =
                 "First create the polygon";
-        }
-        else{
-            document.getElementById("illustration4-result").innerHTML =
-                "Cannot add a guard outside the polygon";
         }
     };
 
