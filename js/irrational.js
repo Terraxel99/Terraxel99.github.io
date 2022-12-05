@@ -7,11 +7,18 @@ let illustration4Sketch = function (p) {
         [20,0],[20,0.5],[30,0.5],[30,0.6],[20,0.6],[20,4],[19.1,4],[19,4.5],[19,4],[17+(2/6),4],[17+(2/6),4.15],[16+(5/6),4],[16,4],[16,1776/375],[12,2486/375],
         [12,4],[10.6,4],[10.6,8],[10.5,8],[10.5,4],[8,4],[8,294/47],[4,280/47],[4,4],[2.1,4],[2,4.5],[2,4],[0,4],[0,1.8],[-10,1.8],[-10,1.7],[0,1.7]
     ];
+    const guardsCoords = [[10.57,2.12],[2-0.0001,0.59],[19-0.0001,1.71]];
+    const multiplier = 35;
+    const xOffset = 400;
+    const yOffset = 350;
+
+
     var guards = []; //List of guards
     var points = []; //The points of the polygon
     var edges = []; //The edges of the polygon
     var isPolygonCreated = false;
     var isRaysDisplayed = false;
+    var is3GuardPlaced = false;
 
     p.setup = function () {
         const canvasContainer = document.getElementById("illustration4-canvas");
@@ -40,9 +47,15 @@ let illustration4Sketch = function (p) {
 
         button4 = p.createButton("Display Rays");
         button4.position(365, 10);
-        button3.style("z-index", "3");
+        button4.style("z-index", "3");
         button4.parent("illustration4-canvas");
         button4.mouseReleased(p.displayRays);
+
+        button5 = p.createButton("Add the three guards");
+        button5.position(475, 10);
+        button5.style("z-index", "3");
+        button5.parent("illustration4-canvas");
+        button5.mouseReleased(p.addThreeGuards);
 
     };
 
@@ -235,6 +248,7 @@ let illustration4Sketch = function (p) {
         guards = [];
         isPolygonCreated = false;
         isRaysDisplayed = false;
+        is3GuardPlaced = false;
         document.getElementById("illustration4-result").innerHTML = "";
     };
 
@@ -246,10 +260,6 @@ let illustration4Sketch = function (p) {
             for(let i = 0; i< coords.length; i++){
                 points.push(new Point(coords[i][0], coords[i][1],points.length, 0,));
             }
-
-            let multiplier = 35;
-            let xOffset = 400;
-            let yOffset = 350;
             
             for(let i = 0; i< points.length;i++){
                 points[i].x = (points[i].x * multiplier)+xOffset;
@@ -269,10 +279,39 @@ let illustration4Sketch = function (p) {
         isRaysDisplayed = !isRaysDisplayed;
     }
 
+    /**
+     * add the 3 guards to fully cover the polygon
+     */
+    p.addThreeGuards = function () {
+        if(isPolygonCreated && !is3GuardPlaced){
+            is3GuardPlaced = true;
+            guards.push(new Guard(guardsCoords[0][0], guardsCoords[0][1], guards.length, 1));
+            guards[guards.length-1].x = (guards[guards.length-1].x * multiplier)+xOffset;
+            guards[guards.length-1].y = (guards[guards.length-1].y * (-multiplier))+yOffset;
+
+            guards.push(new Guard(guardsCoords[1][0], guardsCoords[1][1], guards.length, 2));
+            guards[guards.length-1].x = (guards[guards.length-1].x * multiplier)+xOffset;
+            guards[guards.length-1].y = (guards[guards.length-1].y * (-multiplier))+yOffset;
+
+            guards.push(new Guard(guardsCoords[2][0], guardsCoords[2][1], guards.length, 3));
+            guards[guards.length-1].x = (guards[guards.length-1].x * multiplier)+xOffset;
+            guards[guards.length-1].y = (guards[guards.length-1].y * (-multiplier))+yOffset;
+
+            document.getElementById("illustration4-result").innerHTML =
+                "";
+        }else if(is3GuardPlaced){
+            document.getElementById("illustration4-result").innerHTML =
+                "The guards are already placed";
+        }else{
+            document.getElementById("illustration4-result").innerHTML =
+                "First create the polygon";
+        }
+    }
+
     /* This function add guards in the canvas */
     p.addGuard = function () {
         if(p.isPtInsidePolygon(new Point(p.mouseX, p.mouseY))){
-            guards.push(new Guard(p.mouseX, p.mouseY, guards.length, 1));
+            guards.push(new Guard(p.mouseX, p.mouseY, guards.length, 4));
             document.getElementById("illustration4-result").innerHTML =
                 "";
         }else if(!p.isPtInsidePolygon(new Point(p.mouseX, p.mouseY)) && isPolygonCreated){
@@ -329,7 +368,7 @@ let illustration4Sketch = function (p) {
             }
             //display his fied of view
             for (let i = 0; i < currGuard.visionP.length; i++) {
-                c = p.color(colors[currGuard.visionP[i].color]);
+                c = p.color(colors[currGuard.color]);
                 p.stroke(c);
                 p.fill(c);
                 p.line(currGuard.visionP[i].pt1.x, currGuard.visionP[i].pt1.y, currGuard.visionP[i].pt2.x, currGuard.visionP[i].pt2.y);
