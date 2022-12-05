@@ -276,6 +276,7 @@ span.modal-close::after {
 
     .contributor {
         margin-bottom: 0;
+        max-width: 30%;
     }
 
     article.report {
