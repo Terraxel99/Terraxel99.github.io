@@ -93,12 +93,7 @@
                             
                             <section id="section__introduction" class="section">
                                 <h2>Introduction</h2>
-                                <p>In this report, we cover the Art Gallery Problem and how it has been ap-
-                                    plied/used in our project. From defining the problem and its complexity class(es)
-                                    belonging to implementing algorithms to illustrate the problem and its solutions,
-                                    this paper is a summary of all our researches as well as our experiments and
-                                    code.
-                                </p>
+                                <p>Within the framework of the <a href="https://www.ulb.be/en/programme/info-f420-1">"Computational Geometry" course</a> of the Computer Science master's degree of the ULB, we have done researches about the Art Gallery Problem. During those researches, we covered problem and found several results about this topic. From defining the problem, its complexity class to implementing algorithms as well as explaining recent results on the usage of irrational numbers, this webpage is a complete summary of all of our research work.</p>
                             </section>
                             
                             <section id="section__art-gallery-problem" class="section">
@@ -215,7 +210,7 @@
 
                                 <section id="subsection__orthogonal" class="subsection">
                                     <h3>The orthogonal art gallery problem</h3>
-                                    <p>Kahn, Klawe, and Kleitman have established that any orthogonal polygon is convexly quadrilateralizable (TODO : citeKahn1983TraditionalGR). The proof is quite long but is logical and is also explained in Rourke's book (TODO : cite o1987art p.45 ). Following this, it is possible to prove that (TODO : math floor(n/4)) guards are sufficient to cover an orthogonal polygon, like Fisk's proof.</p>
+                                    <p>Kahn, Klawe, and Kleitman have established that any orthogonal polygon is convexly quadrilateralizable (TODO : citeKahn1983TraditionalGR). The proof is quite long but is logical and is also explained in Rourke's book (TODO : cite o1987art p.45 ). Following this, it is possible to prove that \(\lfloor\frac{n}{4}\rfloor\) guards are sufficient to cover an orthogonal polygon, like Fisk's proof.</p>
                                     
                                     <figure>
                                         <div class="figure__container">
@@ -226,8 +221,8 @@
                                     </figure>
 
                                     <div class="theorem">
-                                        <p>Let \(P\) be a orthogonal polygon with \(n\) vertices. Then, we can find a guard set \(S \subset P\) of cardinality at most (TODO : math floor(n/4)) (TODO : cite o1987art p46).</p>
-                                        <p class="proof">Let \(P\) be an orthogonal polygon and \(G\) the quadrilateralization of \(P\). By adding the diagonals to each square, we end up with a planar graph \(G\). Since every planar graph is 4-colorable (TODO : cite Gonthier2008FormalPF) and the polygon \(P\) is exclusively composed of convex squares. Each guard completely covers at least one square of the quadrilateralization. As in Chvátal's Proof, we can define four subsets and deduce that one of the four subsets has a cardinality (TODO : math floor(n/4)).</p>
+                                        <p>Let \(P\) be a orthogonal polygon with \(n\) vertices. Then, we can find a guard set \(S \subset P\) of cardinality at most \(\lfloor\frac{n}{4}\rfloor\) (TODO : cite o1987art p46).</p>
+                                        <p class="proof">Let \(P\) be an orthogonal polygon and \(G\) the quadrilateralization of \(P\). By adding the diagonals to each square, we end up with a planar graph \(G\). Since every planar graph is 4-colorable (TODO : cite Gonthier2008FormalPF) and the polygon \(P\) is exclusively composed of convex squares. Each guard completely covers at least one square of the quadrilateralization. As in Chvátal's Proof, we can define four subsets and deduce that one of the four subsets has a cardinality \(\lfloor\frac{n}{4}\rfloor\).</p>
                                     </div>
                                     
                                     <figure>
