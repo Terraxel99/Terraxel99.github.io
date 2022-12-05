@@ -115,6 +115,7 @@ main div.main-content.contributors {
     display: flex;
     justify-content: space-between;
     padding: 0 2rem;
+    margin-bottom: 1rem;
 }
 
 .contributor {

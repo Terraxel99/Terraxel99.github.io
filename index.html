@@ -121,6 +121,8 @@
                             <section id="section__art-gallery-er-complete" class="section">
                                 <h2>Art Gallery Problem is Existential-R complete</h2>
 
+                                <button class="illustration-toggle illustration5-toggle">Toggle illustration 5</button>
+
                                 <p>In this section, we will cover the \(\exists \mathbb{R}\) complexity class and explain how is the Art Gallery Problem linked to that complexity class.</p>
 
                                 <section id="subsection__etr" class="subsection">
@@ -398,15 +400,15 @@
                             <h2>Bibliography</h2>
 
                             <div class="citations">
-                                    <article class="citation">Abrahamsen, Mikkel, et al. “Irrational Guards Are Sometimes Needed.” 2017, https://doi.org/10.48550/arxiv.1701.05475. </article>
-                                    <article class="citation">Abrahamsen, Mikkel, et al. “The Art Gallery Problem Is $\Exists \Mathbb{R}$-Complete.” 2017, https://doi.org/10.48550/arxiv.1704.06969. </article>
-                                    <article class="citation">Dobbins, Michael Gene, et al. “Smoothed Analysis of the Art Gallery Problem.” 2018, https://doi.org/10.48550/arxiv.1811.01177. </article>
-                                    <article class="citation">Kooshesh, A.A., and B.M.E. Moret. “Three-Coloring the Vertices of a Triangulated Simple Polygon.” Pattern Recognition, vol. 25, no. 4, 1992, pp. 443–443., https://doi.org/10.1016/0031-3203(92)90093-X.</article>
-                                    <article class="citation">O'Rourke, J., & O'Rourke, O. (1987). Art Gallery Theorems and Algorithms. Oxford University Press.</article>
-                                    <article class="citation">Jeff Kahn, Maria M. Klawe, & Daniel J. Kleitman (1983). Traditional Galleries Require Fewer Watchmen. Siam Journal on Algebraic and Discrete Methods, 4, 194-206.</article>
-                                    <article class="citation">Georges Gonthier (2008). Formal Proof—The Four- Color Theorem. In Formal Proof—The Four-Color Theorem.</article>
-                                    <article class="citation">Asano, T. (1985). EFFICIENT ALGORITHM FOR FINDING THE VISIBILITY POLYGON FOR A POLYGONAL REGION WITH HOLES. Transactions of the Institute of Electronics and Communications Engineers of Japan. Section E, E68(9), 557-559.</article>
-                                    <article class="citation">Hossam A. ElGindy, & David Avis (1981). A Linear Algorithm for Computing the Visibility Polygon from a Point. J. Algorithms, 2, 186-197.</article>
+                                    <article class="citation"><a href="#irrational-1701.05475"></a>Abrahamsen, Mikkel, et al. “Irrational Guards Are Sometimes Needed.” 2017, https://doi.org/10.48550/arxiv.1701.05475. </article>
+                                    <article class="citation"><a href="#art-gallery-er-1704.06969"></a>Abrahamsen, Mikkel, et al. “The Art Gallery Problem Is $\Exists \Mathbb{R}$-Complete.” 2017, https://doi.org/10.48550/arxiv.1704.06969. </article>
+                                    <article class="citation"><a href="#art-gallery-analysis-1811.01177"></a>Dobbins, Michael Gene, et al. “Smoothed Analysis of the Art Gallery Problem.” 2018, https://doi.org/10.48550/arxiv.1811.01177. </article>
+                                    <article class="citation"><a href="#3-colouring-0031-3203(92)90093-X"></a>Kooshesh, A.A., and B.M.E. Moret. “Three-Coloring the Vertices of a Triangulated Simple Polygon.” Pattern Recognition, vol. 25, no. 4, 1992, pp. 443–443., https://doi.org/10.1016/0031-3203(92)90093-X.</article>
+                                    <article class="citation"><a href="#art-gallery-theo-algo"></a>O'Rourke, J., & O'Rourke, O. (1987). Art Gallery Theorems and Algorithms. Oxford University Press.</article>
+                                    <article class="citation"><a href="#galleries-discrete"></a>Jeff Kahn, Maria M. Klawe, & Daniel J. Kleitman (1983). Traditional Galleries Require Fewer Watchmen. Siam Journal on Algebraic and Discrete Methods, 4, 194-206.</article>
+                                    <article class="citation"><a href="#4-colouring"></a>Georges Gonthier (2008). Formal Proof—The Four- Color Theorem. In Formal Proof—The Four-Color Theorem.</article>
+                                    <article class="citation"><a href="#visibility-polygon"></a>Asano, T. (1985). EFFICIENT ALGORITHM FOR FINDING THE VISIBILITY POLYGON FOR A POLYGONAL REGION WITH HOLES. Transactions of the Institute of Electronics and Communications Engineers of Japan. Section E, E68(9), 557-559.</article>
+                                    <article class="citation"><a href="#linear-algo"></a>Hossam A. ElGindy, & David Avis (1981). A Linear Algorithm for Computing the Visibility Polygon from a Point. J. Algorithms, 2, 186-197.</article>
                             </div>
                         </section>
                     </div>
@@ -494,6 +496,25 @@
             </div>
         </div>
 
+        <div class="modal" id="illustration5-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Illustration 5</h3>
+    
+                    <p>
+                        Test
+                        <hr/>
+
+                        <p class="result-title">Result : </p><span id="illustration5-result"></span>
+                    </p>
+                </div>
+
+                <div id="illustration5-canvas" style="position: relative;"></div>
+                
+                <a class="illustration5-toggle modal-toggle-link"><span class="modal-close"></span></a>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="footer-separation">
                 <div class="description"><p>Kaplan Oruç & Gailly Vincent & Dudziak Thomas for Université Libre de Bruxelles - INFO-F420 Computational Geometry course</p></div>
@@ -508,6 +529,7 @@
     <script type="text/javascript" src="./js/orthogonal.js" defer></script>
     <script type="text/javascript" src="./js/visibility.js" defer></script>
     <script type="text/javascript" src="./js/irrational.js" defer></script>
+    <script type="text/javascript" src="./js/illustrationInERComplexityClass.js"></script>
     <script type="text/javascript" src="./js/illustrations.js" defer></script>
 
     <!-- Scripts for maths integration into HTML-->

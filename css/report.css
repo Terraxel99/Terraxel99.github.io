@@ -188,4 +188,8 @@ article.report section.report__bibliography > div.citations > article.citation::
     content: '[' counter(bibliography) '] ';
 }
 
+article.report section.report__bibliography > div.citations > article.citation > a {
+    display: none;
+}
+
 

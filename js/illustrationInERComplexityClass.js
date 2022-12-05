@@ -1,6 +1,6 @@
 /* eslint-disable no-undef, no-unused-vars */
 
-  let illustration0Sketch = function (p) {
+  let illustration5Sketch = function (p) {
   
   // global variables
   var points = [];
@@ -15,20 +15,22 @@
   var triangulationEdges = [];
   var isPolygonCreated = false;
   var occurenceOfEachColor = [0, 0, 0, 0];
-  const colors = ["black", "red", "green", "blue"];
   
   p.setup = function() {
-    let canvas = p.createCanvas(windowWidth, windowHeight);
+
+    const canvasContainer = document.getElementById("illustration5-canvas");
+    let canvas = p.createCanvas(canvasContainer.offsetWidth, 450);
+
     // Put setup code here
-    fill("black");
-    textSize(40);
+    p.fill("black");
+    p.textSize(40);
   
     // Create a basic polygon
-    initFigure();
+    p.initFigure();
   
     button1 = p.createButton("Display/remove regions");
-    button1.position(10, 200);
-    button1.mouseReleased(displayOrRemoveRegions);
+    button1.position(10, 10);
+    button1.mouseReleased(p.displayOrRemoveRegions);
   
     /** Apply the triangulation to allow to check later if a point 
     is inside the polygon (and thus inside at least one triangle 
@@ -36,8 +38,8 @@
     p.applyTriangulation();
   
     button2 = p.createButton("Show triangulation");
-    button2.position(170, 200);
-    button2.mouseReleased(displayOrRemoveTriangulation);
+    button2.position(185, 10);
+    button2.mouseReleased(p.displayOrRemoveTriangulation);
   }
   
   /**
@@ -81,10 +83,10 @@
       p.createRegionsSet();
       p.createWitnessSet();
       if (p.doGuardsCoverArea()) {
-        document.getElementById("result").innerHTML =
+        document.getElementById("illustration5-result").innerHTML =
           "The guards cover all the area";
       } else {
-        document.getElementById("result").innerHTML =
+        document.getElementById("illustration5-result").innerHTML =
           "The guards do not cover all the area";
       }
     }
@@ -117,7 +119,7 @@
   p.endlessLine = function(pt1, pt2) {
     p1 = new p5.Vector(pt1.x, pt1.y);
     p2 = new p5.Vector(pt2.x, pt2.y);
-    let dia_len = new p5.Vector(windowWidth, windowHeight).mag();
+    let dia_len = new p5.Vector(p.windowWidth, p.windowHeight).mag();
     let dir_v = p5.Vector.sub(p2, p1).setMag(dia_len);
     let lp1 = p5.Vector.add(p1, dir_v);
     let lp2 = p5.Vector.sub(p1, dir_v);
@@ -355,7 +357,7 @@
     if (isPolygonCreated) {
       p.reccursiveTriangulation(points, triangulationEdges);
     } else {
-      document.getElementById("result").innerHTML =
+      document.getElementById("illustration5-result").innerHTML =
         "The polygon is not created yet";
     }
   }
@@ -577,9 +579,12 @@
     }
     p.stroke("black");
   }
-  
+
   // This Redraws the Canvas when resized
-  p.windowResized = function () {
-    p.resizeCanvas(windowWidth, windowHeight);
+  p.windowResized = () => p.customResize();
+
+  p.customResize = function () {
+      const canvasContainer = document.getElementById("illustration5-canvas");
+      p.resizeCanvas(canvasContainer.offsetWidth, 450);
   };
 }
