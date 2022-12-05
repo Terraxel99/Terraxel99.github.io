@@ -37,5 +37,21 @@ class EarFour {
     }
 }
 
+/**
+     * Represent a guard
+     * vision = list of all maximal vision in a straight line, vision range (green rays)
+     * visionP = []; //area of vision (blue area)
+     */
+ class Guard {
+    constructor(x, y, nb, color) {
+        this.x = x;
+        this.y = y;
+        this.number = nb;
+        this.color = color; // 0 = black, 1 = red, 2 = green, 3 = blue
+        this.vision = []; //list of all maximal vision in a straight line, vision range (green rays)
+        this.visionP = []; //area of vision (blue area)
+    }
+}
+
 // Some colors used in several scripts.
 const colors = ["black", "red", "green", "blue", "yellow", "grey", "white"];
