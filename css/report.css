@@ -161,6 +161,8 @@ article.report div.theorem > p.proof::before {
     content: 'Proof :';
     text-decoration: underline;
     font-weight: normal;
+    font-style: italic;
+    font-size: 1.1em;
 }
 
 article.report div.theorem > p.proof::after {
@@ -186,10 +188,25 @@ article.report section.report__bibliography > div.citations > article.citation:l
 
 article.report section.report__bibliography > div.citations > article.citation::before {
     content: '[' counter(bibliography) '] ';
+    font-style: italic;
+    font-size: 1.1em;
+    margin-right: .5rem;
 }
 
 article.report section.report__bibliography > div.citations > article.citation > a {
     display: none;
+}
+
+article.report a.cite::before {
+    content: '[' attr(refNumber);
+}
+
+article.report a.cite::after {
+    content: ']';
+}
+
+article.report a.cite > span::before {
+    content: ', p.~' attr(page);
 }
 
 
