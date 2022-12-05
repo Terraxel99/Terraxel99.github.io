@@ -29,11 +29,12 @@
                 <ul>
                     <li><a class="active" href="#">Report</a></li>
                     <li><a href="contributors.html">Contributors</a></li>
+                    <li><a href="technologies.html">Technology stack</a></li>
                 </ul>
             </nav>
         </header>
     
-        <main style="background-color: #F6F6F6;">
+        <main class="page-wrapper__main">
             <div class="main-content">
                 <article class="report">
                     <h1 class="report__title text-center">The Art Gallery Problem</h1>
@@ -56,14 +57,14 @@
                                             <li><a href="#subsection__art-gallery-applications">Real-life applications</a></li>
                                         </ol>
                                     </li>
-                                    <li><a href="#">Art Gallery is Existential-R complete</a>
+                                    <li><a href="#section__art-gallery-er-complete">Art Gallery is Existential-R complete</a>
                                         <ol>
-                                            <li><a href="#">Existential Theory of Reals (ETR)</a></li>
-                                            <li><a href="#">Existential-R class</a></li>
-                                            <li><a href="#">Art Gallery is Existential-R complete</a></li>
+                                            <li><a href="#subsection__etr">Existential Theory of Reals (ETR)</a></li>
+                                            <li><a href="#subsection_er_class">Existential-R class</a></li>
+                                            <li><a href="#subsection_art_gallery_er_complete">Art Gallery is Existential-R complete</a></li>
                                         </ol>
                                     </li>
-                                    <li><a href="#">Well known results</a>
+                                    <li><a href="#section__well-known-results">Well-known results</a>
                                         <ol>
                                             <li><a href="#subsection__chvatal">Chvátal's watchman theorem and Steve Fisk's short proof</a></li>
                                             <li><a href="#subsection__orthogonal">The orthogonal art gallery problem</a></li>
@@ -122,7 +123,7 @@
 
                             </section>
                             
-                            <section class="section section__art-gallery-er-complete">
+                            <section id="section__art-gallery-er-complete" class="section">
                                 <h2>Art Gallery Problem is Existential-R complete</h2>
 
                                 <p>In this section, we will cover the \(\exists \mathbb{R}\) complexity class and explain how is the Art Gallery Problem linked to that complexity class.</p>
@@ -130,18 +131,84 @@
                                 <section id="subsection__etr" class="subsection">
                                     <h3>Existential Theory of Reals (ETR)</h3>
 
-                                    <p>In this section, we will cover the ∃R complexity class and explain how is the
-                                        Art Gallery Problem linked to that complexity class.</p>
+                                    <p>The Existential Theory of Reals problem, often called ETR, is a computational problem where the goal is to determine if a formula \(\phi\), containing variables \(x_1, ..., x_n\) where \(x_i \in \mathbb{R}\ \forall\ i \in \{1, ..., n\}\) can be satisfied with a valuation of variables. The formula \(\phi\) is not only composed of real variables, but is also composed of logic operations and other mathematical symbols. In short, the alphabet of \(\phi\) is the following (TODO cite[p.~4]{DBLP:journals/corr/AbrahamsenAM17a}) :</p>
+
+                                    <div class="centered-equation">
+                                        <p>\(\{x_1, x_2, ..., x_n, \forall, \exists, \wedge, \vee, \neg, 0, 1, +, −, \cdot, (, ), =, <, \leq\}\).</p>
+                                    </div>
+
+                                    <p>In other words, does there exist a valuation for the variables \(x_1, ..., x_n\) such that \(\phi\) is satisfied :</p>
+
+                                    <div class="centered-equation">
+                                        \(\exists(x_1, ..., x_n) : \phi(x_1, ..., x_n)\)
+                                    </div>
+                                </section>
+
+                                <section id="subsection_er_class" class="subsection">
+                                    <h3>\(\exists\mathbb{R}\) class</h3>
+
+                                    <p>Knowing the ETR problem, the \(\exists\mathbb{R}\) class is straightforward. Indeed, the \(\exists\mathbb{R}\) is simply the class of problems that can be reduced to ETR in polynomial time.</p>
+
+                                    <p>As proved by <span class="italic">Mikkel Abrahamsen, Anna Adamaszek and Tillmann Miltzow</span>, we know that the Art Gallery Problem belongs to \(\exists\mathbb{R}\) (TODO : cite[p.~8]{DBLP:journals/corr/AbrahamsenAM17a}). The proof being long and non-trivial, it is not provided here.</p>
+
+                                    <div class="theorem">
+                                        <p>The Art Gallery Problem belongs to the \(\exists\mathbb{R}\) class.</p>
+                                    </div>
+
+                                    <p>The importance of the \(\exists\mathbb{R}\) resides in the fact that we have the following relation where we do not know if the containments are strict yet :</p>
+
+                                    <div class="centered-equation">
+                                        \(\mathcal{NP} \subseteq \exists\mathbb{R} \subseteq PSPACE\)
+                                    </div>
+                                </section>
+
+                                <section id="subsection_art_gallery_er_complete" class="subsection">
+                                    <h3>Art Gallery is Existential-\(\mathbb{R}\) complete</h3>
+
+                                    <p>\(\exists\mathbb{R}\)-completeness for a given problem, say \(A\), means that for every other problem in the Existential Theory of Reals, there is a reduction to \(A\), in polynomial time. </p>
+
+                                    <p>The Art Gallery Problem is at least as hard as deciding whether a system of equations and inequalities over \(\mathbb{R}\) has a satisfiable valuation (TODO : cite[p.~4]{DBLP:journals/corr/AbrahamsenAM17a}). The latter is called ETR-INV :</p>
+
+                                    <div class="theorem">
+                                        <p>Problem ETR-INV is \(\exists\mathbb{R}\)-complete (TODO : cite[p.~11]{DBLP:journals/corr/AbrahamsenAM17a}).</p>
+                                    </div>
+
+                                    <p>After that, <span class="italic">Mikkel Abrahamsen, Anna Adamaszek and Tillmann Miltzow</span> have proven the following with a very long and non-trivial proof :</p>
+
+                                    <div class="theorem">
+                                        <p>Let \(\phi\) be an instance of ETR-INV. The polygon \(\mathcal{P}(\phi)\) has corners at rational coordinates, which can be computed in polynomial time. Also, there exist constants \(d_1, ..., d_n \in \mathbb{Q}\) such that for any \(x := (x_1, ..., x_n) \in \mathbb{R}^n\), \(x\) is a solution to \(\phi\) <span class="underline">if and only if</span> there exists a guard set \(G\) of cardinality \(g(\phi)\) containing guards at all the positions \((x_1 + d_1, 0), ..., (x_n + d_n, 0)\) (TODO : cite[p.56]{DBLP:journals/corr/AbrahamsenAM17a}).</p>
+                                    </div>
+
+                                    <p>In other words, there exists a reduction from ETR-INV to the Art Gallery Problem. Then we can establish the following :</p>
+
+                                    <div class="theorem">
+                                        <p>The Art Gallery Problem is \(\exists\mathbb{R}\)-complete (TODO : cite[p.57]{DBLP:journals/corr/AbrahamsenAM17a})</p>
+
+                                        <p class="proof">
+                                            Firstly, we know, from Theorem (TODO : cite ref{artgalleryER}), that the Art Gallery Problem belongs to \(\exists\mathbb{R}\). Furthermore, from Theorem (TODO : cite ref{etr_inv_ercomplete}), we know that ETR-INV problem is \(\exists\mathbb{R}\)-complete. In other words, every other problem of \(\exists\mathbb{R}\) can be reduced to ETR-INV.
+                                            <br />
+                                            From Theorem (TODO : cite ref{theorem_reduction_etrinv_gallery}), we know there exists a reduction from ETR-INV to the Art Gallery Problem. Since ETR-INV is \(\exists\mathbb{R}\)-complete and that it can be transformed into an instance of the Art Gallery Problem, then the Art Gallery Problem is also \(\exists\mathbb{R}\)-complete.
+                                        </p>
+                                    </div>
                                 </section>
 
                             </section>
                             
-                            <section class="section section__well-known-results">
+                            <section id="section__well-known-results" class="section">
                                 <h2>Well-known results</h2>
 
                                 <section id="subsection__chvatal" class="subsection">
                                     <h3>Chvátal's watchman theorem and Steve Fisk's short proof</h3>
-                                    <p></p>
+                                    <p>An early result found by Chvátal results in the following theorem which allows us to obtain an upper bound for the number of guards needed. The proof is very short and was introduced by Steve Fisk :</p>
+
+                                    <div class="theorem">
+                                        <p>Let \(P\) be a polygon with \(n\) vertices. Then, we can find a guard set \(G \subseteq P\) of cardinality at most \(\lfloor\frac{n}{3}\rfloor\) (TODO cite{FISK1978374}).</p>
+
+                                        <p class="proof">
+                                            Let \(P\) be a polygon with \(n\) vertices.
+                                            First, triangulate \(P\) without adding any new vertex. Every triangulation has a 3-colouring with colors \(a, b\) and \(c\). Now, we can define three subsets \(T_a, T_b, T_c\) of vertices of \(P\) where \(T_k\) is the set of vertices coloured with the colour \(k\). It is clear that at least one of the three subsets \(T_a, T_b, T_c\) has a cardinality \(\leq \lfloor\frac{n}{3}\rfloor\). Let us call that set \(T\). We know every point \(q\) of the polygon \(P\) is in one of the triangles and that every triangle has a point of $p$ of \(T\) on it. Since triangles are convex, we can deduce that \(pq \subset P\).
+                                        </p>
+                                    </div>
 
                                     <button class="illustration-toggle illustration1-toggle">Toggle illustration 1</button>
                                 </section>
@@ -158,7 +225,10 @@
                                         </div>
                                     </figure>
 
-                                    <p><span class="underline">Theorem :</span> Let \(P\) be a orthogonal polygon with \(n\) vertices. Then, we can find a guard set \(S \subset P\) of cardinality at most (TODO : math floor(n/4)) (TODO : cite o1987art p46).</p>
+                                    <div class="theorem">
+                                        <p>Let \(P\) be a orthogonal polygon with \(n\) vertices. Then, we can find a guard set \(S \subset P\) of cardinality at most (TODO : math floor(n/4)) (TODO : cite o1987art p46).</p>
+                                        <p class="proof">Let \(P\) be an orthogonal polygon and \(G\) the quadrilateralization of \(P\). By adding the diagonals to each square, we end up with a planar graph \(G\). Since every planar graph is 4-colorable (TODO : cite Gonthier2008FormalPF) and the polygon \(P\) is exclusively composed of convex squares. Each guard completely covers at least one square of the quadrilateralization. As in Chvátal's Proof, we can define four subsets and deduce that one of the four subsets has a cardinality (TODO : math floor(n/4)).</p>
+                                    </div>
                                     
                                     <figure>
                                         <div class="figure__container">
@@ -168,7 +238,6 @@
                                         </div>
                                     </figure>
                                     
-                                    <p><span class="underline">Proof :</span> Let \(P\) be an orthogonal polygon and \(G\) the quadrilateralization of \(P\). By adding the diagonals to each square, we end up with a planar graph \(G\). Since every planar graph is 4-colorable (TODO : cite Gonthier2008FormalPF) and the polygon \(P\) is exclusively composed of convex squares. Each guard completely covers at least one square of the quadrilateralization. As in Chvátal's Proof, we can define four subsets and deduce that one of the four subsets has a cardinality (TODO : math floor(n/4)).</p>
                                     <button class="illustration-toggle illustration2-toggle">Toggle illustration 2</button>
                                 </section>
                             </section>
@@ -202,10 +271,10 @@
                             
                             <section id="section__irrational-coord" class="section">
                                 <h2>Using irrational coordinates for guards</h2>
-                                <button class="illustration-toggle illustration4-toggle">Toggle illustration 4 (to relocate)</button>
+
                                 <p>In this section, we will cover the usage of irrational numbers to describe the coordinates of guards. What if irrational numbers can be or cannot be used ?</p>
 
-                                <section id="subsection__monotone" class="subsection">
+                                <section id="subsection__monotone-polygon" class="subsection">
                                     <h3>Monotone polygon</h3>
                                     <p>Let us recall the definition of monotone polygon. A polygon P is monotone, with respect to a straight line L, if every line that is perpendicular to L crosses at most 2 times the edges of P.</p>
 
@@ -226,7 +295,7 @@
                                     </figure>
                                 </section>
 
-                                <section id="subsection__rational-lines" class="subsection">
+                                <section id="subsection__irrational-lines" class="subsection">
                                     <h3>Rational & irrational lines</h3>
                                     <p>Firstly, a <span class="underline">rational point</span> is a point whose coordinates are all rational numbers. An <span class="underline">irrational point</span> is a point which is not rational. A <span class="underline">rational line</span> is a line which contains two rational points. Again, an irrational line is a line which is not rational.</p>
                                 </section>
@@ -284,7 +353,9 @@
                                         </div>
                                     </figure>
 
-                                    <p>Now that we have taken in consideration the triangles of \(T\), we will concentrate our efforts on seeing the whole base rectangle as well as the 4 quadrilaterals of \(Q\). Let us start by studying the image on the left of the figure 5. If we fix the position of the guard on the line \(l\) in such a way that the guard (let us call it \(g_1\)) sees at least a portion of the bottom edge \(e_b\) and a portion of the edge \(e_t\), we can define \(p_b\) as the leftmost point on \(e_b\) that \(g_1\) can see. In a similar way, we define \(p_t\) as the leftmost point seen by \(g_1\) on the top edge \(e_t\). Clearly, if we move \(g_1\) upwards, \(p_b\) will move to the left while \(p_t\) will move to the right. The opposite happens when we move \(g_1\) downwards. Now, let us call \(b\) the bottom-right point of the quadrilateral \(Q_{lt}\) and \(d\) the top-right point of the quadrilateral \(Q_{rt}\). Then, we can create a line containing \(p_t\) and \(b\) and a second line containing \(p_b\) and \(d\). Those two lines will obviously intersect each other and we will call the intersection \(i\). It is clear that the triangle \(ibd\) is the triangle where we need to put a second guard \(g_2\) in order to see everything that remains that \(g_1\) can not see. If we repeat this for every possible position of \(g_1\) on the line \(l\), we obtain a curve that we will call \(C\). The guard \(g_2\) <span class="underline">must</span> be placed on the right of the line \(bd\) and on the left of the curve \(C\).</p>
+                                    <button class="illustration-toggle illustration4-toggle">Toggle illustration 4</button>
+
+                                    <p>Now that we have taken in consideration the triangles of \(T\), we will concentrate our efforts on seeing the whole base rectangle as well as the 4 quadrilaterals of \(Q\). Let us start by studying the image on the left of the figure 8. If we fix the position of the guard on the line \(l\) in such a way that the guard (let us call it \(g_1\)) sees at least a portion of the bottom edge \(e_b\) and a portion of the edge \(e_t\), we can define \(p_b\) as the leftmost point on \(e_b\) that \(g_1\) can see. In a similar way, we define \(p_t\) as the leftmost point seen by \(g_1\) on the top edge \(e_t\). Clearly, if we move \(g_1\) upwards, \(p_b\) will move to the left while \(p_t\) will move to the right. The opposite happens when we move \(g_1\) downwards. Now, let us call \(b\) the bottom-right point of the quadrilateral \(Q_{lt}\) and \(d\) the top-right point of the quadrilateral \(Q_{rt}\). Then, we can create a line containing \(p_t\) and \(b\) and a second line containing \(p_b\) and \(d\). Those two lines will obviously intersect each other and we will call the intersection \(i\). It is clear that the triangle \(ibd\) is the triangle where we need to put a second guard \(g_2\) in order to see everything that remains that \(g_1\) can not see. If we repeat this for every possible position of \(g_1\) on the line \(l\), we obtain a curve that we will call \(C\). The guard \(g_2\) <span class="underline">must</span> be placed on the right of the line \(bd\) and on the left of the curve \(C\).</p>
 
                                     <figure>
                                         <div class="figure__container">
@@ -332,9 +403,15 @@
                             <h2>Bibliography</h2>
 
                             <div class="citations">
-                                <article class="citation">
-                                    Une citation
-                                </article>
+                                    <article class="citation">Abrahamsen, Mikkel, et al. “Irrational Guards Are Sometimes Needed.” 2017, https://doi.org/10.48550/arxiv.1701.05475. </article>
+                                    <article class="citation">Abrahamsen, Mikkel, et al. “The Art Gallery Problem Is $\Exists \Mathbb{R}$-Complete.” 2017, https://doi.org/10.48550/arxiv.1704.06969. </article>
+                                    <article class="citation">Dobbins, Michael Gene, et al. “Smoothed Analysis of the Art Gallery Problem.” 2018, https://doi.org/10.48550/arxiv.1811.01177. </article>
+                                    <article class="citation">Kooshesh, A.A., and B.M.E. Moret. “Three-Coloring the Vertices of a Triangulated Simple Polygon.” Pattern Recognition, vol. 25, no. 4, 1992, pp. 443–443., https://doi.org/10.1016/0031-3203(92)90093-X.</article>
+                                    <article class="citation">O'Rourke, J., & O'Rourke, O. (1987). Art Gallery Theorems and Algorithms. Oxford University Press.</article>
+                                    <article class="citation">Jeff Kahn, Maria M. Klawe, & Daniel J. Kleitman (1983). Traditional Galleries Require Fewer Watchmen. Siam Journal on Algebraic and Discrete Methods, 4, 194-206.</article>
+                                    <article class="citation">Georges Gonthier (2008). Formal Proof—The Four- Color Theorem. In Formal Proof—The Four-Color Theorem.</article>
+                                    <article class="citation">Asano, T. (1985). EFFICIENT ALGORITHM FOR FINDING THE VISIBILITY POLYGON FOR A POLYGONAL REGION WITH HOLES. Transactions of the Institute of Electronics and Communications Engineers of Japan. Section E, E68(9), 557-559.</article>
+                                    <article class="citation">Hossam A. ElGindy, & David Avis (1981). A Linear Algorithm for Computing the Visibility Polygon from a Point. J. Algorithms, 2, 186-197.</article>
                             </div>
                         </section>
                     </div>
@@ -409,7 +486,7 @@
                     <h3>Illustration 4</h3>
     
                     <p>
-                        Test
+                        Build the polygon as described above by clicking on the dedicated button. Then, you will be able to place guards as you wish. Finally, trigger the computation of the visibility polygon by clicking the "Compute Visibility" button. As option, you can enable/disable the rays of the visibility polygon algorithm.
                         <hr/>
 
                         <p class="result-title">Result : </p><span id="illustration4-result"></span>

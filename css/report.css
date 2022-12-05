@@ -1,4 +1,6 @@
-body {counter-reset: figures;}
+body {
+    counter-reset: figures theorems bibliography;
+}
 
 article.report {
     padding: 0 2rem;
@@ -11,6 +13,10 @@ article.report {
 
 .underline {
     text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
 }
 
 .report__title {
@@ -125,3 +131,61 @@ article.report figure figcaption::before {
 article.report section#section__glossary ul > li {
     margin-bottom: .5rem;
 }
+
+article.report div.centered-equation {
+    display: flex;
+    justify-content: center;
+}
+
+article.report div.theorem {
+    padding-left: 1rem;
+}
+
+article.report div.theorem > p {
+    counter-increment: theorems;
+    font-style: italic;
+}
+
+article.report div.theorem > p::before {
+    content: 'Theorem ' counter(theorems) ': ';
+    font-weight: bold;
+    font-style: normal;
+}
+
+article.report div.theorem > p.proof {
+    font-style: italic;
+    padding-left: 1rem;
+}
+
+article.report div.theorem > p.proof::before {
+    content: 'Proof :';
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+article.report div.theorem > p.proof::after {
+    content: '';
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #000;
+    margin-left: 1rem;
+}
+
+article.report section.report__bibliography > div.citations {
+    padding-left: 2rem;
+}
+
+article.report section.report__bibliography > div.citations > article.citation {
+    margin-bottom: .5rem;
+    counter-increment: bibliography;
+}
+
+article.report section.report__bibliography > div.citations > article.citation:last-child {
+    margin-bottom: 0;
+}
+
+article.report section.report__bibliography > div.citations > article.citation::before {
+    content: '[' counter(bibliography) '] ';
+}
+
+

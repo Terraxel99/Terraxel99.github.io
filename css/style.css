@@ -100,8 +100,9 @@ nav.navbar ul li a:focus {
     color: var(--primary-color);
 }
 
-main {
+main.page-wrapper__main {
     padding: 0 1rem;
+    background-color: #F6F6F6;
 }
 
 main div.main-content {
