@@ -193,8 +193,8 @@ article.report section.report__bibliography > div.citations > article.citation::
     margin-right: .5rem;
 }
 
-article.report section.report__bibliography > div.citations > article.citation > a {
-    display: none;
+article.report section.report__bibliography > div.citations > article.citation > p {
+    display: inline;
 }
 
 article.report a.cite::before {
