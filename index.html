@@ -125,8 +125,6 @@
                             <section id="section__art-gallery-er-complete" class="section">
                                 <h2>Art Gallery Problem is Existential-R complete</h2>
 
-                                <button class="illustration-toggle illustration5-toggle">Toggle illustration 5</button>
-
                                 <p>In this section, we will cover the \(\exists \mathbb{R}\) complexity class and explain how is the Art Gallery Problem linked to that complexity class.</p>
 
                                 <section id="subsection__etr" class="subsection">
@@ -152,16 +150,45 @@
 
                                     <p>As proved by <span class="italic">Mikkel Abrahamsen, Anna Adamaszek and Tillmann Miltzow</span>, we know that the Art Gallery Problem belongs to \(\exists\mathbb{R}\) <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span class="page" page="8"></span></a>. The proof being long and non-trivial, it is not provided here.</p>
 
-                                    <div id="art-gallery-er" class="theorem">
-                                        <p>The Art Gallery Problem belongs to the \(\exists\mathbb{R}\) class.</p>
-                                    </div>
-
                                     <p>The importance of the \(\exists\mathbb{R}\) resides in the fact that we have the following relation where we do not know if the containments are strict yet :</p>
 
                                     <div class="centered-equation">
                                         \(\mathcal{NP} \subseteq \exists\mathbb{R} \subseteq PSPACE\)
                                     </div>
                                 </section>
+                                <section id="subsection_art_gallery_er" class="subsection">
+                                    <h3>Art Gallery is in \(\exists\mathbb{R}\) class</h3>
+                                    <div id="art-gallery-er" class="theorem">
+                                        <p>The Art Gallery Problem belongs to the \(\exists\mathbb{R}\) class.</p>
+                                    </div>
+                                    <p class="proof">
+                                        To prove this theorem, we need to create a quantifier-free formula to satisfy the definition of the existential theory of the reals in the previous section. We will therefore demonstrate how to construct a quantifier-free formula of the first-order theory of the reals such that, when applied to an instance of the art gallery problem \((P, g)\) where \(P\) is a polygon with \(n\) corners each of which has rational coordinates and the set of guards has cardinality \(g\), it is satisfiable.
+                                    </p>
+                                    <p>The formula that will be presented was strongly inspired by the following formula from the work of Misha Sharir \TODO cite : </p>
+                                    
+                                    <div class="centered-equation">
+                                        \(\psi := [\exists\ x_1, y_1, ... , x_k, y_k \forall\ p_x, p_y : INSIDE-POLYGON(p_x, p_y) \Rightarrow \vee_{i = 1}^k\ SEES(x_i, y_i, p_x, p_y)]\)
+                                    </div>
+
+                                    <p>But because of the universal quantifier, the formula \(\psi\) is not in the \(\exists\mathbb{R}\) class. The idea to allow the formula to place the problem in the \(\exists\mathbb{R}\) class is to find a set of points of polynomial size that guarantees that if they are seen by the guard set then the whole polygon is covered. This set of points will be called the "witness set" in the rest of the demo.</p>
+                                    
+                                    <p>In the previous formula, for each \(i \in\{1,...,k\}\), the variables \(x_i, y_i\) are used to represent the position of the guard \(g_i\) and \(p := (p_x, p_y)\) represents an arbitrary point. The predicate \(INSIDE-POLYGON(p_x, p_y)\) checks whether the point \(p\) is inside the polygon or not. The predicate \(SEES(x_i, y_i, p_x, p_y)\) checks if the guard \(g_i\) sees the point \(p\) or not. </p>
+                                    <p><span class="underline">Creating witness set : </span> Let \(L := \{l_1, ..., l_m\}\), the set of lines containing either a corner \(v \in P\) and a guard \(g \in G\) or an edge of \(P\). These lines will decompose the polygon into a set of regions named \(A\).</p>
+                                    <p>Several properties of these regions can be noted: </p>
+                                    <ul>
+                                        <li>Each of the regions of \(A\) is an open convex polygon.</li>
+                                        <li>Each region is either in \(P\) or in the complement of \(P\).</li>
+                                        <li>The union of all regions in \(P\) is equal to \(P\).</li>
+                                        <li>For each region \(R\) of \(A\), each guard \(g \in G\) can either see all points of \(R\) or no points of \(R\). This allows an interesting observation for the following: if a guard \(g\) sees a point of \(R\), then it sees everything in \(R\) and its closure.</li>
+                                    </ul>
+
+                                    <p>Thanks to these properties, our problem is to verify that our set of guards covers at least one point of each region of the polygon. We will therefore use the notion of centroid to determine the points of each region that we will check. For a triangle formed by 3 points \(a, b, c\), its centroid is defined as the point \(C(a,b,c) := (a\ +b\ +c)/3\). If we have 3 points \(a,b,c\) which are corners of the same region \(R \in A\) then the centroid of this triangle will be inside this region. As each region is composed of at least 3 points, we get at least one centroid (and therefore one point to check) for each region. </p>
+                                    <p>So we need to find the corners of each region which are none other than the intersection points formed by the lines of \(L\). Let \(X\) be the set of all intersection points between two non-parallel well-defined lines in \(L\).</p>
+                                    <p>Now that we have the corners of all the regions, for any three points \(a,b,c\) in \(X\) we generate the corresponding centroids. If the centroid is inside the polygon (it can happen that regions are formed outside the polygon, so this condition is necessary), we add it to the witness set. </p>
+                                    <p>Finally we check that for each point of the witness set, at least one guard sees this point.</p>
+                                </section>
+                                
+                                <button class="illustration-toggle illustration5-toggle">Toggle illustration 0</button>
 
                                 <section id="subsection_art_gallery_er_complete" class="subsection">
                                     <h3>Art Gallery is Existential-\(\mathbb{R}\) complete</h3>
