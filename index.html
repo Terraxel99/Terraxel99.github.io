@@ -60,8 +60,9 @@
                                     <li><a href="#section__art-gallery-er-complete">Art Gallery is Existential-R complete</a>
                                         <ol>
                                             <li><a href="#subsection__etr">Existential Theory of Reals (ETR)</a></li>
-                                            <li><a href="#subsection_er_class">Existential-R class</a></li>
-                                            <li><a href="#subsection_art_gallery_er_complete">Art Gallery is Existential-R complete</a></li>
+                                            <li><a href="#subsection__er-class">Existential-R class</a></li>
+                                            <li><a href="#subsection__art-gallery-er">Art Gallery is in \(\exists\mathbb{R}\) class</a></li>
+                                            <li><a href="#subsection__art-gallery-er-complete">Art Gallery is Existential-R complete</a></li>
                                         </ol>
                                     </li>
                                     <li><a href="#section__well-known-results">Well-known results</a>
@@ -143,7 +144,7 @@
                                     </div>
                                 </section>
 
-                                <section id="subsection_er_class" class="subsection">
+                                <section id="subsection__er-class" class="subsection">
                                     <h3>\(\exists\mathbb{R}\) class</h3>
 
                                     <p>Knowing the ETR problem, the \(\exists\mathbb{R}\) class is straightforward. Indeed, the \(\exists\mathbb{R}\) is simply the class of problems that can be reduced to ETR in polynomial time.</p>
@@ -156,15 +157,19 @@
                                         \(\mathcal{NP} \subseteq \exists\mathbb{R} \subseteq PSPACE\)
                                     </div>
                                 </section>
-                                <section id="subsection_art_gallery_er" class="subsection">
+
+                                <section id="subsection__art-gallery-er" class="subsection">
                                     <h3>Art Gallery is in \(\exists\mathbb{R}\) class</h3>
+
                                     <div id="art-gallery-er" class="theorem">
                                         <p>The Art Gallery Problem belongs to the \(\exists\mathbb{R}\) class.</p>
                                     </div>
+
                                     <p class="proof">
                                         To prove this theorem, we need to create a quantifier-free formula to satisfy the definition of the existential theory of the reals in the previous section. We will therefore demonstrate how to construct a quantifier-free formula of the first-order theory of the reals such that, when applied to an instance of the art gallery problem \((P, g)\) where \(P\) is a polygon with \(n\) corners each of which has rational coordinates and the set of guards has cardinality \(g\), it is satisfiable.
                                     </p>
-                                    <p>The formula that will be presented was strongly inspired by the following formula from the work of Misha Sharir \TODO cite : </p>
+
+                                    <p>The formula that will be presented was strongly inspired by the following formula from the work of Misha Sharir <a href="#guarding-galleries-terrains" refNumber="9" class="cite"></a> : </p>
                                     
                                     <div class="centered-equation">
                                         \(\psi := [\exists\ x_1, y_1, ... , x_k, y_k \forall\ p_x, p_y : INSIDE-POLYGON(p_x, p_y) \Rightarrow \vee_{i = 1}^k\ SEES(x_i, y_i, p_x, p_y)]\)
@@ -175,6 +180,7 @@
                                     <p>In the previous formula, for each \(i \in\{1,...,k\}\), the variables \(x_i, y_i\) are used to represent the position of the guard \(g_i\) and \(p := (p_x, p_y)\) represents an arbitrary point. The predicate \(INSIDE-POLYGON(p_x, p_y)\) checks whether the point \(p\) is inside the polygon or not (this can be done using triangulation and checking if a point is at least one triangle). The predicate \(SEES(x_i, y_i, p_x, p_y)\) checks if the guard \(g_i\) sees the point \(p\) or not (this can be done by checking if a segment formed by a centroid and a guard is crossing an edge of the polygon). </p>
                                     <p><span class="underline">Creating witness set : </span> Let \(L := \{l_1, ..., l_m\}\), the set of lines containing either a corner \(v \in P\) and a guard \(g \in G\) or an edge of \(P\). These lines will decompose the polygon into a set of regions named \(A\) (see illustration 0 and press the button "display regions").</p>
                                     <p>Several properties of these regions can be noted: </p>
+                                    
                                     <ul>
                                         <li>Each of the regions of \(A\) is an open convex polygon.</li>
                                         <li>Each region is either in \(P\) or in the complement of \(P\).</li>
@@ -186,11 +192,11 @@
                                     <p>So we need to find the corners of each region which are none other than the intersection points formed by the lines of \(L\). Let \(X\) be the set of all intersection points between two non-parallel well-defined lines in \(L\) (see illustration 0 and press the button "display intersections points").</p>
                                     <p>Now that we have the corners of all the regions, for any three points \(a,b,c\) in \(X\) we generate the corresponding centroids. If the centroid is inside the polygon (it can happen that regions are formed outside the polygon, so this condition is necessary), we add it to the witness set (see illustration 0 and press the button "display witness set"). </p>
                                     <p>Finally we check that for each point of the witness set, at least one guard sees this point.</p>
+                                    
+                                    <button class="illustration-toggle illustration5-toggle">Toggle illustration 0</button>
                                 </section>
                                 
-                                <button class="illustration-toggle illustration5-toggle">Toggle illustration 0</button>
-
-                                <section id="subsection_art_gallery_er_complete" class="subsection">
+                                <section id="subsection__art-gallery-er-complete" class="subsection">
                                     <h3>Art Gallery is Existential-\(\mathbb{R}\) complete</h3>
 
                                     <p>\(\exists\mathbb{R}\)-completeness for a given problem, say \(A\), means that for every other problem in the Existential Theory of Reals, there is a reduction to \(A\), in polynomial time. </p>
@@ -444,6 +450,7 @@
                                     <article id="visibility-polygon" class="citation">Asano, T. (1985). EFFICIENT ALGORITHM FOR FINDING THE VISIBILITY POLYGON FOR A POLYGONAL REGION WITH HOLES. Transactions of the Institute of Electronics and Communications Engineers of Japan. Section E, E68(9), 557-559.</article>
                                     <article id="linear-algo" class="citation">Hossam A. ElGindy, & David Avis (1981). A Linear Algorithm for Computing the Visibility Polygon from a Point. J. Algorithms, 2, 186-197.</article>
                                     <article id="fisk" class="citation">Steve Fisk (1978). A short proof of Chvátal's Watchman Theorem. Journal of Combinatorial Theory, Series B, 24(3), 374.</article>
+                                    <article id="guarding-galleries-terrains" class="citation">Alon Efrat, & Sariel Har-Peled (2006). Guarding galleries and terrains. Information Processing Letters, 100(6), 238-245.</article>
                             </div>
                         </section>
                     </div>
@@ -534,10 +541,9 @@
         <div class="modal" id="illustration5-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Illustration 5</h3>
+                    <h3>Illustration 0</h3>
     
                     <p>
-                        Test
                         <hr/>
 
                         <p class="result-title">Result : </p><span id="illustration5-result"></span>
