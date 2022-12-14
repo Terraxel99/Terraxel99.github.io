@@ -108,7 +108,7 @@
 
                                     <p>Let \(P\) be a polygon and \(p,q \in P\), then \(p\) sees \(q\) (and conversely \(q\) sees \(p\)) if the segment \(pq\) is fully contained in \(P\) <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span page="4" class="page"></span></a>. A set of points \(G \subseteq P\) is a guard set of the polygon \(P\) only if \(\forall\ p \in P,\ \exists\ g \in G : g\ guards\ P\). In other words, every point of the polygon must be seen by at least one point of the guard set <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span page="4" class="page"></span></a>.</p>
                                     <p>A guard set of a polygon \(P\) is minimal (or optimal) if its cardinality is the smallest possible for a guard set of \(P\) <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span page="4" class="page"></span></a>.</p>
-                                    <p>The goal of the Art Gallery Problem is, from an integer $k$ and a polygon \(P\), to decide whether the polygon \(P\) has a guard set of cardinality \(k\) <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span page="4" class="page"></span></a>.</p>
+                                    <p>The goal of the Art Gallery Problem is, from an integer \(k\) and a polygon \(P\), to decide whether the polygon \(P\) has a guard set of cardinality \(k\) <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span page="4" class="page"></span></a>.</p>
                                 </section>
 
                                 <section id="subsection__art-gallery-applications" class="subsection">
@@ -149,7 +149,7 @@
 
                                     <p>Knowing the ETR problem, the \(\exists\mathbb{R}\) class is straightforward. Indeed, the \(\exists\mathbb{R}\) is simply the class of problems that can be reduced to ETR in polynomial time.</p>
 
-                                    <p>As proved by <span class="italic">Mikkel Abrahamsen, Anna Adamaszek and Tillmann Miltzow</span>, we know that the Art Gallery Problem belongs to \(\exists\mathbb{R}\) <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span class="page" page="8"></span></a>. The proof being long and non-trivial, it is not provided here.</p>
+                                    <p>As proved by <span class="italic">Mikkel Abrahamsen, Anna Adamaszek and Tillmann Miltzow</span>, we know that the Art Gallery Problem belongs to \(\exists\mathbb{R}\) <a href="#art-gallery-er-1704.06969" refNumber="2" class="cite"><span class="page" page="8"></span></a>. The <span class="underline">formal</span> proof being long and non-trivial, it is not provided here but a way to construct and simulate the proof will be shown in the next section.</p>
 
                                     <p>The importance of the \(\exists\mathbb{R}\) resides in the fact that we have the following relation where we do not know if the containments are strict yet :</p>
 
@@ -239,7 +239,7 @@
 
                                         <p class="proof">
                                             Let \(P\) be a polygon with \(n\) vertices.
-                                            First, triangulate \(P\) without adding any new vertex. Every triangulation has a 3-colouring with colors \(a, b\) and \(c\). Now, we can define three subsets \(T_a, T_b, T_c\) of vertices of \(P\) where \(T_k\) is the set of vertices coloured with the colour \(k\). It is clear that at least one of the three subsets \(T_a, T_b, T_c\) has a cardinality \(\leq \lfloor\frac{n}{3}\rfloor\). Let us call that set \(T\). We know every point \(q\) of the polygon \(P\) is in one of the triangles and that every triangle has a point of $p$ of \(T\) on it. Since triangles are convex, we can deduce that \(pq \subset P\).
+                                            First, triangulate \(P\) without adding any new vertex. Every triangulation has a 3-colouring with colors \(a, b\) and \(c\). Now, we can define three subsets \(T_a, T_b, T_c\) of vertices of \(P\) where \(T_k\) is the set of vertices coloured with the colour \(k\). It is clear that at least one of the three subsets \(T_a, T_b, T_c\) has a cardinality \(\leq \lfloor\frac{n}{3}\rfloor\). Let us call that set \(T\). We know every point \(q\) of the polygon \(P\) is in one of the triangles and that every triangle has a point of \(p\) of \(T\) on it. Since triangles are convex, we can deduce that \(pq \subset P\).
                                         </p>
                                     </div>
 
@@ -297,7 +297,7 @@
 
                                 <section id="subsection__visibility-polygon-implementation" class="subsection">
                                     <h3>Implementation of visibility polygon</h3>
-                                    <p>To compute the vibility polygon for a specific point \(a\), multiple algorithms with different techniques exist. The most common method is by using the circular sweeping method by sending rays from the point \(a\) to all the verticies \(V_i\) of the polygon \(P\). Then removing the rays which cross any edge of the polygon before reaching the corresponding vertex \(V_i\). And for the rays which can continue in the polygon after reaching the vertex \(V_i\), compute the next intersection with the polygon. At the end all the end point of the rays will form the boundaries of \(V(P,a)\).</p>
+                                    <p>To compute the vibility polygon for a specific point \(a\), multiple algorithms with different techniques exist. The most common method is by using the circular sweeping method by sending rays from the point \(a\) to all the verticies \(V_i\) of the polygon \(P\). Then removing the rays which cross any edge of the polygon before reaching the corresponding vertex \(V_i\). And for the rays which can continue in the polygon after reaching the vertex \(V_i\), compute the next intersection with the polygon. At the end all the end point of the rays will form the boundaries of \(VP(P,a)\).</p>
                                     <p>The algorithm implementend in the illustration 3 below, is based on the algorithm explained by Asano Tetsuo <a href="#visibility-polygon" refNumber="6" class="cite"><span class="page" page="557-559"></span></a>. He explained how to compute the visibility polygon for a polygon with and without holes, and the complexity at the worst case is \(O(n \space log \space n)\).</p>
                                     <button class="illustration-toggle illustration3-toggle">Toggle illustration 3</button>
                                 </section>
